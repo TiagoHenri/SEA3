@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">SEA</string>
+
+    <string name="entrar">ENTRAR</string>
+    <string name="registrar">REGISTRAR</string>
+    <string name="email">EMAIL</string>
+    <string name="senha">SENHA</string>
+    <string name="concluir">CONCLUIR</string>
+    <string name="enviar">ENVIAR</string>
+    <string name="registrando">Registrando</string>
+    <string name="aguarde">Aguarde</string>
+    <string name="logando">Logando</string>
+    <string name="carregando">Carregando</string>
+    <string name="sucesso">Sucesso!!</string>
+    <string name="nome">NOME COMPLETO</string>
+
+    <string name="esqueceuSenha">Esqueceu sua senha?</string>
+    <string name="logarEmail">Faça login com sua conta de email</string>
+    <string name="registrarEmail">Cadastre-se para usar o aplicativo</string>
+    <string name="dicaEmail">nome@exemplo.com</string>
+    <string name="dicaSenha">******</string>
+    <string name="dicaNome">Dino Sauro da Silva</string>
+    <string name="msgEsqueciSenha1">Insira seu email e lhe enviaremos um</string>
+    <string name="msgEsqueciSenha2">link para redefinir sua senha</string>
+    <string name="msgLinkEnviado">Link de redefinição enviado para seu email</string>
+    <string name="msgBemVindo">Bem vindo(a) de volta,</string>
+
+    <string name="erroCampoVazio">Existem campos obrigatórios vazios</string>
+    <string name="erroTamanhoSenha">A senha deve ter ao menos 6 dígitos</string>
+    <string name="erroRegistro">Erro ao registrar:</string>
+    <string name="erroRecuperarLogin">Erro ao recuperar o último login</string>
+
+    <string name="sucessoRegistro">Usuário registrado. Siga instruções no email recebido</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
