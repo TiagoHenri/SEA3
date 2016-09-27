@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class ListAdapter<T extends ListableBean> extends BaseAdapter {
     public ListAdapter(Context context, ItemListAdapter<T> itemListAdapter) {
         this.context = context;
         this.itemListAdapter = itemListAdapter;
-        this.list = new LinkedList<>();
+        this.list = new ArrayList<>();
     }
 
     public void addItem(T item) {

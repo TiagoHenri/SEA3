@@ -46,18 +46,17 @@ public class NoticiaInteractorImpl implements NoticiaInteractor {
     }
 
     @Override
-    public void atualizarNoticias(final ViewPagerAdapter adapter, final HomeCallback.OnLoadingListener onLoadingFinishedObj){
+    public void atualizarNoticias(final HomeCallback.OnLoadingListener onLoadingFinishedObj){
         Backendless.Persistence.of(Noticia.class).find(new AsyncCallback<BackendlessCollection<Noticia>>() {
             @Override
             public void handleResponse(BackendlessCollection<Noticia> result) {
-                InitialConfig.noticias = result.getCurrentPage();
-                Log.e("Numero de noticias", Integer.toString(InitialConfig.noticias.size()));
+                /*for(int i = 0; i < InitialConfig.noticias.size(); i++){
+                    InitialConfig.noticias.add(result.getCurrentPage().get(i));
+                    Log.e("Noticias: ", InitialConfig.noticias.get(i).getTitulo());
+                }*/
 
-                adapter.addFrag(NoticiaFragment.newInstance(0), "Notícias");
-                for(int i = 1; i < 5; i++){
-                    adapter.addFrag(ListFragment.newInstance(i), "Teste " + i);
-                }
-                adapter.notifyDataSetChanged();
+                onLoadingFinishedObj.onSucess();
+
             }
 
             @Override

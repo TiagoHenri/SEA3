@@ -14,7 +14,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import br.ufg.iiisea.sea.R;
+import br.ufg.iiisea.sea.bean.Noticia;
 import br.ufg.iiisea.sea.presenter.EntrarPresenter;
 import br.ufg.iiisea.sea.presenter.EntrarPresenterImpl;
 import br.ufg.iiisea.sea.presenter.HomePresenter;
@@ -24,7 +27,7 @@ import br.ufg.iiisea.sea.utils.ViewPagerAdapter;
 /**
  * Created by fellipe on 20/09/16.
  */
-public class HomeActivity extends AppCompatActivity implements HomeView {
+public class HomeActivity extends AppCompatActivity implements HomeView, NoticiaView {
 
     private ProgressDialog progress;
 
@@ -57,8 +60,8 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setCurrentItem(0);
 
-        presenter = new HomePresenterImpl(this, getApplicationContext());
-        presenter.configuraTabs(adapter);
+        presenter = new HomePresenterImpl(this, getApplicationContext(), adapter);
+        presenter.configuraTabs();
     }
 
     @Override
@@ -105,4 +108,23 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
                 msg, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void addNoticia(Noticia newNoticia) {
+
+    }
+
+    @Override
+    public void addNoticia(List<Noticia> lista) {
+
+    }
+
+    @Override
+    public void removeNoticia(Noticia oldNoticia) {
+
+    }
+
+    @Override
+    public void showNenhumaNoticiaMessage() {
+
+    }
 }

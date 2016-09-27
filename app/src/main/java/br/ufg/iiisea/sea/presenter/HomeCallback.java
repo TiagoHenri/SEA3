@@ -9,16 +9,4 @@ public interface HomeCallback {
         void onError(int type, String msg);
         void onSucess();
     }
-
-    //exemplo:
-    interface OnLogoutListner {
-        void onSucess();
-        void onError();
-    }
-
-    interface onNoticiaLoad{
-        void
-        void onError();
-    }
-
 }

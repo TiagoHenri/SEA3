@@ -12,5 +12,5 @@ import java.util.List;
 public interface NoticiaInteractor {
 
     List<Noticia> getNoticiasInicio();
-    void atualizarNoticias(final ViewPagerAdapter adapter, final HomeCallback.OnLoadingListener onLoadingFinishedObj);
+    void atualizarNoticias(final HomeCallback.OnLoadingListener onLoadingFinishedObj);
 }

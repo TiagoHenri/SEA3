@@ -26,22 +26,24 @@ public class HomePresenterImpl extends PresenterAbstract implements HomePresente
     //private ProgramacaoInteractor programacaoInteractor;
     private HomeView view;
     private Context context;
+    private ViewPagerAdapter adapter;
 
     public HomePresenterImpl(Context context) {
         this.noticiaInteractor = new NoticiaInteractorImpl(context);
         //this.programacaoInteractor = new ProgramacaoInteractor();
     }
 
-    public HomePresenterImpl(HomeView view, Context context) {
+    public HomePresenterImpl(HomeView view, Context context, ViewPagerAdapter adapter) {
         this(context);
         this.view = view;
         this.context = context;
+        this.adapter = adapter;
     }
 
     @Override
-    public void configuraTabs(ViewPagerAdapter adapter) {
-
-        noticiaInteractor.atualizarNoticias(adapter, this);
+    public void configuraTabs() {
+        view.showProgressLoading();
+        noticiaInteractor.atualizarNoticias(this);
     }
 
     @Override
@@ -61,6 +63,11 @@ public class HomePresenterImpl extends PresenterAbstract implements HomePresente
     public void onSucess() {
         if(view != null) {
             view.hideProgress();
+
+            adapter.addFrag(NoticiaFragment.newInstance(0), "Notícias");
+
+
+            adapter.notifyDataSetChanged();
 
             view.showToastMessage(R.string.sucesso);
         }

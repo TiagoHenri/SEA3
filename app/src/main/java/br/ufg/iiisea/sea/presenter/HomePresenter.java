@@ -7,6 +7,6 @@ import br.ufg.iiisea.sea.utils.ViewPagerAdapter;
  */
 public interface HomePresenter extends EntrarCallback {
 
-    void configuraTabs(ViewPagerAdapter adapter);
+    void configuraTabs();
     void onDestroy();
 }

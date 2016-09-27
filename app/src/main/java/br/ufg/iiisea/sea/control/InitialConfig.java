@@ -37,6 +37,11 @@ public class InitialConfig extends Application {
     public void onCreate(){
         super.onCreate();
 
+        Noticia not = new Noticia();
+        not.setTitulo("Teste 1");
+        not.setConteudo("Conteudo da noticia 1");
+        noticias.add(not);
+
         Backendless.initApp(this, YOUR_APP_ID, YOUR_SECRET_KEY, APP_VERSION);
 
         String userToken = Backendless.UserService.loggedInUser();
