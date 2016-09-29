@@ -24,6 +24,7 @@ import br.ufg.iiisea.sea.presenter.HomePresenter;
 import br.ufg.iiisea.sea.presenter.HomePresenterImpl;
 import br.ufg.iiisea.sea.utils.ViewPagerAdapter;
 
+
 /**
  * Created by fellipe on 20/09/16.
  */
