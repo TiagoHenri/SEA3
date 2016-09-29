@@ -26,13 +26,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        try {
-            db.execSQL(DBEntries.UsuarioEntry.SQL_CREATE_ENTRIES);
-            db.execSQL(DBEntries.EventoEntry.SQL_CREATE_ENTRIES);
-            db.execSQL(DBEntries.NoticiaEntry.SQL_CREATE_ENTRIES);
-        } catch (SQLiteException ex) {
-            Log.e("SQL:", ex.toString());
-        }
+//        Log.i("SQL", "entrou no onCreate");
+        db.execSQL(DBEntries.UsuarioEntry.SQL_CREATE_ENTRIES);
+        db.execSQL(DBEntries.EventoEntry.SQL_CREATE_ENTRIES);
+        db.execSQL(DBEntries.NoticiaEntry.SQL_CREATE_ENTRIES);
+        db.execSQL(DBEntries.ProgramacaoEntry.SQL_CREATE_ENTRIES);
     }
 
     @Override
@@ -40,6 +38,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(DBEntries.UsuarioEntry.SQL_DELETE_ENTRIES);
         db.execSQL(DBEntries.EventoEntry.SQL_DELETE_ENTRIES);
         db.execSQL(DBEntries.NoticiaEntry.SQL_DELETE_ENTRIES);
+        db.execSQL(DBEntries.ProgramacaoEntry.SQL_DELETE_ENTRIES);
         onCreate(db);
     }
 

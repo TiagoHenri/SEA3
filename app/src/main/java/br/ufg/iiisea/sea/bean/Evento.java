@@ -1,14 +1,17 @@
 package br.ufg.iiisea.sea.bean;
 
+import br.ufg.iiisea.sea.utils.MutableBean;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
  * Created by fellipe on 14/09/16.
  */
-public class Evento {
+public class Evento implements Serializable, MutableBean {
 
-    private int id;
+    private long id;
     private String nome;
     private String descricao;
     private Date dataInicio;
@@ -18,11 +21,11 @@ public class Evento {
 
     }
 
-    public Evento(int id) {
+    public Evento(long id) {
         this.id = id;
     }
 
-    public Evento(int id, String nome, String descricao, Date dataInicio, Date dataFim) {
+    public Evento(long id, String nome, String descricao, Date dataInicio, Date dataFim) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -30,11 +33,11 @@ public class Evento {
         this.dataFim = dataFim;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

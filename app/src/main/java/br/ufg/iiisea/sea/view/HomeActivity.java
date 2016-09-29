@@ -1,5 +1,6 @@
 package br.ufg.iiisea.sea.view;
 
+import android.support.v4.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -27,11 +28,14 @@ import br.ufg.iiisea.sea.utils.ViewPagerAdapter;
 /**
  * Created by fellipe on 20/09/16.
  */
-public class HomeActivity extends AppCompatActivity implements HomeView, NoticiaView {
+public class HomeActivity extends AppCompatActivity implements HomeView {
 
     private ProgressDialog progress;
 
     private HomePresenter presenter;
+
+    private ViewPagerAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,15 +57,17 @@ public class HomeActivity extends AppCompatActivity implements HomeView, Noticia
         getSupportActionBar().setDisplayShowCustomEnabled(true);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setCurrentItem(0);
 
-        presenter = new HomePresenterImpl(this, getApplicationContext(), adapter);
-        presenter.configuraTabs();
+        //presenter.configuraTabs();
+
+        presenter = new HomePresenterImpl(this, getApplicationContext());
+
     }
 
     @Override
@@ -109,22 +115,7 @@ public class HomeActivity extends AppCompatActivity implements HomeView, Noticia
     }
 
     @Override
-    public void addNoticia(Noticia newNoticia) {
-
-    }
-
-    @Override
-    public void addNoticia(List<Noticia> lista) {
-
-    }
-
-    @Override
-    public void removeNoticia(Noticia oldNoticia) {
-
-    }
-
-    @Override
-    public void showNenhumaNoticiaMessage() {
-
+    public void addFragmento(Fragment fragment, String nome) {
+        adapter.addFrag(fragment, nome);
     }
 }

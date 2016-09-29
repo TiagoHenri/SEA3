@@ -1,12 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/swipe_refresh_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="br.ufg.iiisea.sea.view.NoticiaFragment">
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="br.ufg.iiisea.sea.view.NoticiaFragment">
+    android:layout_height="match_parent">
 
 
     <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/lstNoticias" />
+            android:layout_width="match_parent"
+            android:layout_height="521dp"
+            android:id="@+id/lstNoticias" android:background="#b87777"/>
+    <TextView
+            android:layout_width="238dp"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/tvTeste" android:layout_gravity="left|bottom"/>
 </FrameLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

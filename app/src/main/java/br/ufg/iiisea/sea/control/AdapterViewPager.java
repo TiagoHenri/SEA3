@@ -1,4 +1,4 @@
-package br.ufg.iiisea.sea.utils;
+package br.ufg.iiisea.sea.control;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,11 +10,11 @@ import java.util.List;
 /**
  * Created by Tiago on 20/03/2016.
  */
-public class ViewPagerAdapter extends FragmentPagerAdapter {
+public class AdapterViewPager extends FragmentPagerAdapter {
     private final List<Fragment> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
 
-    public ViewPagerAdapter(FragmentManager manager) {
+    public AdapterViewPager(FragmentManager manager) {
         super(manager);
     }
 
@@ -31,7 +31,6 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public void addFrag(Fragment fragment, String title) {
         mFragmentList.add(fragment);
         mFragmentTitleList.add(title);
-        notifyDataSetChanged();
     }
 
     @Override

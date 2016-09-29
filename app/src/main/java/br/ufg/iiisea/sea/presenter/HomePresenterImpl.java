@@ -5,45 +5,53 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import android.util.Log;
 import br.ufg.iiisea.sea.R;
+import br.ufg.iiisea.sea.bean.Evento;
+import br.ufg.iiisea.sea.bean.Programacao;
 import br.ufg.iiisea.sea.control.InitialConfig;
-import br.ufg.iiisea.sea.interactor.EntrarInteractor;
-import br.ufg.iiisea.sea.interactor.EntrarInteractorImpl;
-import br.ufg.iiisea.sea.interactor.NoticiaInteractor;
-import br.ufg.iiisea.sea.interactor.NoticiaInteractorImpl;
+import br.ufg.iiisea.sea.interactor.*;
 import br.ufg.iiisea.sea.utils.PresenterAbstract;
 import br.ufg.iiisea.sea.utils.ViewPagerAdapter;
+import br.ufg.iiisea.sea.view.HomeActivity;
 import br.ufg.iiisea.sea.view.HomeView;
 import br.ufg.iiisea.sea.view.ListFragment;
 import br.ufg.iiisea.sea.view.NoticiaFragment;
 
+import java.util.List;
+
 /**
  * Created by tiago on 25/09/16.
  */
-public class HomePresenterImpl extends PresenterAbstract implements HomePresenter, HomeCallback.OnLoadingListener {
+public class HomePresenterImpl extends PresenterAbstract implements HomePresenter, HomeCallback {
 
-    private NoticiaInteractor noticiaInteractor;
+//    private NoticiaInteractor noticiaInteractor;
     //private ProgramacaoInteractor programacaoInteractor;
     private HomeView view;
     private Context context;
-    private ViewPagerAdapter adapter;
+    private HomeInteractor interactor;
+   // private ViewPagerAdapter adapter;
 
-    public HomePresenterImpl(Context context) {
-        this.noticiaInteractor = new NoticiaInteractorImpl(context);
+    public HomePresenterImpl(HomeView view, Context context) {
+        //this.noticiaInteractor = new NoticiaInteractorImpl(context);
         //this.programacaoInteractor = new ProgramacaoInteractor();
+        this.view = view;
+        interactor = new HomeInteractorImpl(context, this);
+        configuraTabs();
+        //interactor.preparaDadosIniciais();
+        //view.addFragmento(new NoticiaFragment(), "nt");
     }
 
-    public HomePresenterImpl(HomeView view, Context context, ViewPagerAdapter adapter) {
-        this(context);
-        this.view = view;
-        this.context = context;
-        this.adapter = adapter;
-    }
+//    public HomePresenterImpl(HomeView view, Context context) {
+//        this(context, view);
+//        this.view = view;
+//        this.context = context;
+//       // this.adapter = adapter;
+//    }
 
     @Override
     public void configuraTabs() {
-        view.showProgressLoading();
-        noticiaInteractor.atualizarNoticias(this);
+        interactor.preparaDadosIniciais();
     }
 
     @Override
@@ -52,24 +60,17 @@ public class HomePresenterImpl extends PresenterAbstract implements HomePresente
     }
 
     @Override
-    public void onError(int type, String msg) {
-        if(view != null) {
-            view.hideProgress();
-            view.showToastByString(msg);
-        }
+    public void dadosIniciaisEncontrado(Evento evento, List<Programacao> programacaoList) {
+
+//        for(int i = 0; i < programacaoList.size(); i++) {
+//            view.addFragmento(ProgramacaoFragment(programacaoList.get(i)), "Programacao dia "+programacaoList.get(i).);
+//        }
+        Log.i("Evento", evento.getNome());
+        view.addFragmento(NoticiaFragment.newInstance(evento), "Notícias");
     }
 
     @Override
-    public void onSucess() {
-        if(view != null) {
-            view.hideProgress();
-
-            adapter.addFrag(NoticiaFragment.newInstance(0), "Notícias");
-
-
-            adapter.notifyDataSetChanged();
-
-            view.showToastMessage(R.string.sucesso);
-        }
+    public void houveErro(String msg) {
+        view.showToastByString(msg);
     }
 }

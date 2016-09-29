@@ -8,6 +8,6 @@ import java.util.List;
  * Created by fellipe on 23/09/16.
  */
 public interface NoticiaPresenter {
-    List<Noticia> preparaNoticiasInicial();
-    List<Noticia> atualizarNoticias();
+    void preparaNoticiasInicial();
+    void atualizarNoticias();
 }

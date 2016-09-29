@@ -1,6 +1,7 @@
 package br.ufg.iiisea.sea.view;
 
 
+import android.support.v4.app.Fragment;
 import br.ufg.iiisea.sea.utils.ViewAbstract;
 
 /**
@@ -31,5 +32,7 @@ public interface HomeView extends ViewAbstract {
      * @param msg
      */
     void showToastByString(String msg);
+
+    void addFragmento(Fragment fragment, String nome);
 
 }
