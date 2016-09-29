@@ -9,4 +9,6 @@
     <color name="yellow">#FEE026</color>
     <color name="green">#429674</color>
     <color name="blue">#23559C</color>
+
+    <color name="translucido">#f323559C</color>
 </resources>

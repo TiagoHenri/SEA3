@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.02">
+
+        <Button
+            android:id="@+id/btnPalestraCheckin"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.02"
+            android:background="@color/green"
+            android:text="@string/fazerCheckin"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:id="@+id/ll1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.02"
+            android:orientation="vertical"
+            android:weightSum="1"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+
+            <TextView
+                android:text="PALESTRA:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:id="@+id/tvTagPalestraNome"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:layout_weight="0.30"
+                android:layout_marginRight="20dp"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:text="Nome da palestra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/tvPalestraNome"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.30" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/textView4"
+                android:layout_weight="0.30"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/yellow"
+                android:layout_marginRight="20dp"
+                android:layout_height="3dp" />
+
+            <TextView
+                android:text="PALESTRANTES:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/tvTagPalestraPalestrantes"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:layout_weight="0.30"
+                android:layout_marginRight="20dp"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:text="Nomes dos palestrantes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/tvPalestraPalestrantes"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.30" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/textView7"
+                android:layout_weight="0.30"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/yellow"
+                android:layout_marginRight="20dp"
+                android:layout_height="3dp" />
+
+            <TextView
+                android:text="INÍCIO:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/tvTaPalestraInicio"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:layout_weight="0.30"
+                android:layout_marginRight="20dp"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:text="Hora de início"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/tvPalestraInicio"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.30" />
+
+            <TextView
+                android:text="TÉRMINO:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/tvTagPalestraFim"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:layout_weight="0.30"
+                android:layout_marginRight="20dp"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:text="Hora de término"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/tvPalestraFim"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.30" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/textView12"
+                android:layout_weight="0.30"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/yellow"
+                android:layout_marginRight="20dp"
+                android:layout_height="3dp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
