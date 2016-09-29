@@ -9,4 +9,6 @@ public interface HomeCallback {
         void onError(int type, String msg);
         void onSucess();
     }
+
+
 }

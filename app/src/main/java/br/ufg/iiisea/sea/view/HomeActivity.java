@@ -27,7 +27,7 @@ import br.ufg.iiisea.sea.utils.ViewPagerAdapter;
 /**
  * Created by fellipe on 20/09/16.
  */
-public class HomeActivity extends AppCompatActivity implements HomeView, NoticiaView {
+public class HomeActivity extends AppCompatActivity implements HomeView {
 
     private ProgressDialog progress;
 
@@ -60,8 +60,11 @@ public class HomeActivity extends AppCompatActivity implements HomeView, Noticia
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setCurrentItem(0);
 
-        presenter = new HomePresenterImpl(this, getApplicationContext(), adapter);
-        presenter.configuraTabs();
+        adapter.addFrag(NoticiaFragment.newInstance(0), "Notícias");
+
+        presenter = new HomePresenterImpl(this, getApplicationContext(), adapter); //TODO tirar adapter
+        adapter.addFrag(new NoticiaFragment(), "title");
+        //presenter.configuraTabs();
     }
 
     @Override
@@ -106,25 +109,5 @@ public class HomeActivity extends AppCompatActivity implements HomeView, Noticia
     public void showToastByString(String msg) {
         Toast.makeText(getApplicationContext(),
                 msg, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void addNoticia(Noticia newNoticia) {
-
-    }
-
-    @Override
-    public void addNoticia(List<Noticia> lista) {
-
-    }
-
-    @Override
-    public void removeNoticia(Noticia oldNoticia) {
-
-    }
-
-    @Override
-    public void showNenhumaNoticiaMessage() {
-
     }
 }

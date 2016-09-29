@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by fellipe on 23/09/16.
  */
-public class NoticiaPresenterImpl extends PresenterAbstract implements NoticiaPresenter {
+public class NoticiaPresenterImpl extends PresenterAbstract implements NoticiaPresenter implements NoticiaCallBack.AtualizarNoticia {
 
     private NoticiaView view;
     private NoticiaInteractor interactor;

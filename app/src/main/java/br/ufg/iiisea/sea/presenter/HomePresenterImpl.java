@@ -16,6 +16,7 @@ import br.ufg.iiisea.sea.utils.ViewPagerAdapter;
 import br.ufg.iiisea.sea.view.HomeView;
 import br.ufg.iiisea.sea.view.ListFragment;
 import br.ufg.iiisea.sea.view.NoticiaFragment;
+import br.ufg.iiisea.sea.view.NoticiaView;
 
 /**
  * Created by tiago on 25/09/16.
@@ -26,18 +27,20 @@ public class HomePresenterImpl extends PresenterAbstract implements HomePresente
     //private ProgramacaoInteractor programacaoInteractor;
     private HomeView view;
     private Context context;
-    private ViewPagerAdapter adapter;
+
+    private NoticiaView notView;
 
     public HomePresenterImpl(Context context) {
+        this.notView = new NoticiaFragment();
         this.noticiaInteractor = new NoticiaInteractorImpl(context);
         //this.programacaoInteractor = new ProgramacaoInteractor();
     }
 
-    public HomePresenterImpl(HomeView view, Context context, ViewPagerAdapter adapter) {
+    public HomePresenterImpl(HomeView view, Context context) {
         this(context);
         this.view = view;
         this.context = context;
-        this.adapter = adapter;
+        //this.adapter = adapter;
     }
 
     @Override
@@ -64,9 +67,7 @@ public class HomePresenterImpl extends PresenterAbstract implements HomePresente
         if(view != null) {
             view.hideProgress();
 
-            adapter.addFrag(NoticiaFragment.newInstance(0), "Notícias");
-
-
+            adapter.getItem(0).getView()
             adapter.notifyDataSetChanged();
 
             view.showToastMessage(R.string.sucesso);

@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.List;
+
 import br.ufg.iiisea.sea.R;
 import br.ufg.iiisea.sea.bean.Noticia;
 import br.ufg.iiisea.sea.control.InitialConfig;
@@ -22,14 +24,17 @@ import br.ufg.iiisea.sea.utils.NoticiaFragmentAdapter;
 /**
  * Created by tiago on 25/09/2016.
  */
-public class NoticiaFragment extends Fragment {
+public class NoticiaFragment extends Fragment implements NoticiaView {
 
     private ListView lstNoticias = null;
 
     private ListAdapter<Noticia> lstAdapter;
 
+    //TODO criar noticiaPresenter
+
     public NoticiaFragment() {
         // Required empty public constructor
+        //TODO instanciar noticia presenter impl
     }
 
     public static NoticiaFragment newInstance(int index) {
@@ -43,7 +48,7 @@ public class NoticiaFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        presenter.preparaNoticiasInicial
     }
 
     @Override
@@ -73,5 +78,30 @@ public class NoticiaFragment extends Fragment {
         lstNoticias.setAdapter(lstAdapter);
 
         return inflater.inflate(R.layout.fragment_noticia, container, false);
+    }
+
+    @Override
+    public void addNoticia(Noticia newNoticia) {
+        lstAdapter.addItem(newNoticia);
+    }
+
+    @Override
+    public void addNoticia(List<Noticia> lista) {
+
+    }
+
+    @Override
+    public void removeNoticia(Noticia oldNoticia) {
+
+    }
+
+    @Override
+    public void showNenhumaNoticiaMessage() {
+
+    }
+
+    @Override
+    public void finish() {
+
     }
 }
