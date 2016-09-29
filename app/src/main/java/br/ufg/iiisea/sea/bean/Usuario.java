@@ -1,13 +1,15 @@
 package br.ufg.iiisea.sea.bean;
 
+import br.ufg.iiisea.sea.utils.MutableBean;
+
 import java.util.ArrayList;
 
 /**
  * Created by fellipe on 14/09/16.
  */
-public class Usuario {
+public class Usuario implements MutableBean{
 
-    private int id;
+    private long id;
     private String nome;
     private String email;
     private String senha;
@@ -15,7 +17,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(int id, String nome, String email, String senha) {
+    public Usuario(long id, String nome, String email, String senha) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -27,11 +29,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -5,39 +5,49 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.List;
-
+import android.widget.Toast;
 import br.ufg.iiisea.sea.R;
+import br.ufg.iiisea.sea.bean.Evento;
 import br.ufg.iiisea.sea.bean.Noticia;
 import br.ufg.iiisea.sea.control.InitialConfig;
+import br.ufg.iiisea.sea.presenter.NoticiaPresenter;
+import br.ufg.iiisea.sea.presenter.NoticiaPresenterImpl;
 import br.ufg.iiisea.sea.utils.ItemListAdapter;
 import br.ufg.iiisea.sea.utils.ListAdapter;
 import br.ufg.iiisea.sea.utils.NoticiaFragmentAdapter;
 
+import java.text.SimpleDateFormat;
+import java.util.List;
+
 /**
  * Created by tiago on 25/09/2016.
  */
-public class NoticiaFragment extends Fragment implements NoticiaView {
+public class NoticiaFragment extends Fragment implements NoticiaView, SwipeRefreshLayout.OnRefreshListener
+{
 
+    private static final String EVENTO_ATUAL = "evento_atual";
     private ListView lstNoticias = null;
+    private Evento evento;
 
     private ListAdapter<Noticia> lstAdapter;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private NoticiaPresenter presenter;
 
-    //TODO criar noticiaPresenter
 
     public NoticiaFragment() {
-        // Required empty public constructor
-        //TODO instanciar noticia presenter impl
     }
 
-    public static NoticiaFragment newInstance(int index) {
+    public static final NoticiaFragment newInstance(int index) {
         NoticiaFragment fragment = new NoticiaFragment();
         Bundle args = new Bundle();
         args.putInt("index", index);
@@ -45,39 +55,72 @@ public class NoticiaFragment extends Fragment implements NoticiaView {
         return fragment;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        presenter.preparaNoticiasInicial
+    public static final NoticiaFragment newInstance(Evento eventoAtual) {
+        NoticiaFragment fragment = new NoticiaFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(EVENTO_ATUAL, eventoAtual);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View convertView = inflater.inflate(R.layout.fragment_noticia, container, false);
-        lstNoticias = (ListView) convertView.findViewById(R.id.lstNoticias);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Evento eventoAtual = (Evento) getArguments().getSerializable(EVENTO_ATUAL);
+        presenter = new NoticiaPresenterImpl(this, getContext(), eventoAtual);
 
         ItemListAdapter<Noticia> itemListAdapter = new ItemListAdapter<Noticia>() {
             @Override
             public View getView(Noticia item, View view, ViewGroup viewGroup) {
                 if(view == null) {
-                    LayoutInflater inflater = LayoutInflater.from(convertView.getContext());
+                    LayoutInflater inflater = LayoutInflater.from(getContext());
                     view = inflater.inflate(R.layout.noticia_item, viewGroup, false);
                 }
+                Log.i("Entrou", "itemListAdapter:evneto");
                 TextView titulo = (TextView) view.findViewById(R.id.tvNoticiaItemTitulo);
                 TextView conteudo = (TextView) view.findViewById(R.id.tvNoticiaItemConteudo);
                 titulo.setBackgroundColor(Color.BLUE);
                 titulo.setText(item.getTitulo());
-                conteudo.setText(item.getConteudo() + " - " + item.getId() + " - " + item.getTitulo());
-                conteudo.setId((int) item.getId());
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                conteudo.setText(item.getId() + " - " + item.getConteudo() + " - "+dateFormat.format(item.getData()));
                 return view;
             }
         };
 
+
         //ArrayAdapter<Noticia> ad = new NoticiaFragmentAdapter(convertView.getContext(), R.layout.noticia_item, InitialConfig.noticias);
-        lstAdapter = new ListAdapter<>(convertView.getContext(), itemListAdapter);
+        lstAdapter = new ListAdapter<>(getContext(), itemListAdapter);
+
+        presenter.preparaNoticiasInicial();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.i("Entrou", "onCreateView");
+        final View convertView = inflater.inflate(R.layout.fragment_noticia, container, false);
+        swipeRefreshLayout = (SwipeRefreshLayout) convertView.findViewById(R.id.swipe_refresh_container);
+        swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setColorSchemeColors(android.R.color.holo_green_dark,
+                android.R.color.holo_red_dark,
+                android.R.color.holo_blue_dark,
+                android.R.color.holo_orange_dark);
+        lstNoticias = (ListView) convertView.findViewById(R.id.lstNoticias);
+
+        TextView tvTeste = (TextView) convertView.findViewById(R.id.tvTeste);
+        Evento e = (Evento) getArguments().getSerializable(EVENTO_ATUAL);
+        String teste = (e != null) ? e.getNome() : "nao veio";
+        tvTeste.setText(teste);
+
         lstNoticias.setAdapter(lstAdapter);
 
-        return inflater.inflate(R.layout.fragment_noticia, container, false);
+
+        return convertView;
+    }
+
+    @Override
+    public void finish() {
+
     }
 
     @Override
@@ -87,21 +130,31 @@ public class NoticiaFragment extends Fragment implements NoticiaView {
 
     @Override
     public void addNoticia(List<Noticia> lista) {
-
+        for(int i = 0; i < lista.size(); i++)
+            lstAdapter.addItem(lista.get(i));
     }
 
     @Override
     public void removeNoticia(Noticia oldNoticia) {
-
+        Log.i("e", "removeNoticia:viewfragment");
+        lstAdapter.removeItem(oldNoticia);
     }
 
     @Override
     public void showNenhumaNoticiaMessage() {
-
+        Toast.makeText(getContext(),
+                "Não há mais notícias para esse evento.", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void finish() {
+    public void onRefresh() {
+//        swipeRefreshLayout.setRefreshing(false);
+//        showNenhumaNoticiaMessage();
+        presenter.atualizarNoticias();
+    }
 
+    @Override
+    public void concluidoAtualizacao() {
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

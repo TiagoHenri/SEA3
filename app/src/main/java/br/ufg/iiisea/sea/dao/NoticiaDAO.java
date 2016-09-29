@@ -2,9 +2,13 @@ package br.ufg.iiisea.sea.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.util.Log;
 import br.ufg.iiisea.sea.bean.Evento;
 import br.ufg.iiisea.sea.bean.Noticia;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.lang.NullPointerException;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +25,25 @@ public class NoticiaDAO extends AbstractDAO<Noticia> {
         return query("SELECT * FROM " + getTableName()
                         + " WHERE "
                         + DBEntries.NoticiaEntry.COLUMN_EVEN_ID + " = "
-                        + evento.getId());
+                        + evento.getId()+ " ORDER BY date("+ DBEntries.NoticiaEntry.COLUMN_NAME_DATA+") DESC");
+    }
+
+    public Noticia getLastDateNoticia() {
+        List<Noticia> results =  query("SELECT * FROM "+getTableName()
+                +" ORDER BY date("+ DBEntries.NoticiaEntry.COLUMN_NAME_DATA+") DESC Limit 1");
+        if(results.isEmpty()) {
+            return null;
+        } else {
+            return results.get(0);
+        }
+    }
+
+    public boolean existeNoticiaPorId(long id) {
+        List<Noticia> results = query("SELECT * FROM " + getTableName() + " WHERE "
+                                + DBEntries.NoticiaEntry.COLUMN_ID + " = "+id);
+        if(!results.isEmpty() && results.get(0).getId() == id)
+            return true;
+        return false;
     }
 
     @Override
@@ -48,7 +70,16 @@ public class NoticiaDAO extends AbstractDAO<Noticia> {
     public Noticia toEntity(ContentValues contentValues) {
         Noticia entity = new Noticia();
         entity.setId(contentValues.getAsInteger(DBEntries.NoticiaEntry.COLUMN_ID));
-        //entity.setData(contentValues.getAsString(DBEntries.NoticiaEntry.COLUMN_NAME_DATA));
+
+        Log.i("entrou", "data");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dateFormat.setLenient(false);
+        try {
+            entity.setData(dateFormat.parse(contentValues.getAsString(DBEntries.NoticiaEntry.COLUMN_NAME_DATA)));
+        } catch (NullPointerException|ParseException ex) {
+            Log.e("NoticaDAO:", "dateFormat");
+            entity.setData(null);
+        }
         entity.setTitulo(contentValues.getAsString(DBEntries.NoticiaEntry.COLUMN_NAME_TITULO));
         entity.setConteudo(contentValues.getAsString(DBEntries.NoticiaEntry.COLUMN_NAME_CONTEUDO));
 
@@ -61,9 +92,11 @@ public class NoticiaDAO extends AbstractDAO<Noticia> {
     @Override
     public ContentValues toContentValues(Noticia entity) {
         ContentValues values = new ContentValues();
-        //values.put(DBEntries.NoticiaEntry.COLUMN_ID, entity.getId());
+        values.put(DBEntries.NoticiaEntry.COLUMN_ID, entity.getId());
         values.put(DBEntries.NoticiaEntry.COLUMN_EVEN_ID, entity.getEvento().getId());
-        //values.put(DBEntries.NoticiaEntry.COLUMN_NAME_DATA, entity.getData().toString());
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        values.put(DBEntries.NoticiaEntry.COLUMN_NAME_DATA, dateFormat.format(entity.getData()));
         values.put(DBEntries.NoticiaEntry.COLUMN_NAME_TITULO, entity.getTitulo());
         values.put(DBEntries.NoticiaEntry.COLUMN_NAME_CONTEUDO, entity.getConteudo());
         return values;

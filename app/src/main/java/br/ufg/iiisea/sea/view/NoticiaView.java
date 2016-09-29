@@ -13,6 +13,6 @@ public interface NoticiaView extends ViewAbstract {
     void addNoticia(List<Noticia> lista);
     void removeNoticia(Noticia oldNoticia);
 
-
+    void concluidoAtualizacao();
     void showNenhumaNoticiaMessage();
 }

@@ -1,15 +1,16 @@
 package br.ufg.iiisea.sea.bean;
 
 import br.ufg.iiisea.sea.utils.ListableBean;
+import br.ufg.iiisea.sea.utils.MutableBean;
 
 import java.util.Date;
 
 /**
  * Created by fellipe on 22/09/16.
  */
-public class Noticia implements ListableBean {
+public class Noticia implements ListableBean, MutableBean {
 
-    private long objectId;
+    private long id;
     private String titulo;
     private Date data;
     private String conteudo;
@@ -19,29 +20,26 @@ public class Noticia implements ListableBean {
 
     }
 
-    public Noticia(long objectId, String titulo) {
-        this.objectId = objectId;
+    public Noticia(long id, String titulo) {
+        this.id = id;
         this.titulo = titulo;
     }
 
-    public Noticia(int objectId, String titulo, Evento evento, Date data, String conteudo) {
-        this.objectId = objectId;
+    public Noticia(long id, String titulo, Date data, String conteudo, Evento evento) {
+        this.id = id;
         this.titulo = titulo;
-        this.evento = evento;
         this.data = data;
         this.conteudo = conteudo;
+        this.evento = evento;
     }
 
-    public Noticia(int objectId) {
-        this.objectId = objectId;
-    }
-
+    @Override
     public long getId() {
-        return objectId;
+        return id;
     }
 
-    public void setId(long objectId) {
-        this.objectId = objectId;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -74,5 +72,26 @@ public class Noticia implements ListableBean {
 
     public void setEvento(Evento evento) {
         this.evento = evento;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Noticia noticia = (Noticia) o;
+
+        return noticia.id == id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (titulo != null ? titulo.hashCode() : 0);
+        result = 31 * result + (data != null ? data.hashCode() : 0);
+        result = 31 * result + (conteudo != null ? conteudo.hashCode() : 0);
+        result = 31 * result + (evento != null ? evento.hashCode() : 0);
+        return result;
     }
 }

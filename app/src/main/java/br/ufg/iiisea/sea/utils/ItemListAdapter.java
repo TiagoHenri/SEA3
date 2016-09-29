@@ -7,6 +7,6 @@ import br.ufg.iiisea.sea.utils.ListableBean;
 /**
  * Created by fellipe on 23/09/16.
  */
-public interface ItemListAdapter<T extends ListableBean> {
+public interface ItemListAdapter<T extends MutableBean> {
     View getView(T item, View view, ViewGroup viewGroup);
 }

@@ -1,5 +1,6 @@
 package br.ufg.iiisea.sea.view;
 
+import android.support.v4.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -24,7 +25,6 @@ import br.ufg.iiisea.sea.presenter.HomePresenter;
 import br.ufg.iiisea.sea.presenter.HomePresenterImpl;
 import br.ufg.iiisea.sea.utils.ViewPagerAdapter;
 
-
 /**
  * Created by fellipe on 20/09/16.
  */
@@ -33,6 +33,9 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
     private ProgressDialog progress;
 
     private HomePresenter presenter;
+
+    private ViewPagerAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,18 +57,17 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
         getSupportActionBar().setDisplayShowCustomEnabled(true);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setCurrentItem(0);
 
-        adapter.addFrag(NoticiaFragment.newInstance(0), "Notícias");
-
-        presenter = new HomePresenterImpl(this, getApplicationContext(), adapter); //TODO tirar adapter
-        adapter.addFrag(new NoticiaFragment(), "title");
         //presenter.configuraTabs();
+
+        presenter = new HomePresenterImpl(this, getApplicationContext());
+
     }
 
     @Override
@@ -110,5 +112,10 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
     public void showToastByString(String msg) {
         Toast.makeText(getApplicationContext(),
                 msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void addFragmento(Fragment fragment, String nome) {
+        adapter.addFrag(fragment, nome);
     }
 }

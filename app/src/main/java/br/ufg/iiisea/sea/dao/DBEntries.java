@@ -8,7 +8,7 @@ import br.ufg.iiisea.sea.bean.Evento;
  */
 public final class DBEntries {
 
-    public static final String BD_NOME = "SEA3UFG.DB";
+    public static final String BD_NOME = "SEA3UFG";
     public static final int    BD_VERSION = 4;
 
     private DBEntries() {
@@ -46,7 +46,10 @@ public final class DBEntries {
                         + COLUMN_NAME_NOME + " TEXT NOT NULL, "
                         + COLUMN_NAME_DESCRICAO + " TEXT, "
                         + COLUMN_NAME_DATA_INICIO + " DATE, "
-                        + COLUMN_NAME_DATA_FIM + " DATE)";
+                        + COLUMN_NAME_DATA_FIM + " DATE);" +
+                "" +
+                "INSERT INTO "+TABLE_NAME+" ("+COLUMN_ID+", "+COLUMN_NAME_NOME+", "+COLUMN_NAME_DESCRICAO+", "+COLUMN_NAME_DATA_INICIO+", "+COLUMN_NAME_DATA_FIM+") " +
+                "VALUES (1, 'Simpósio de Empreendedorismo Ambiental', '', '2016-10-06', '2016-10-07');";
         public static final String SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + TABLE_NAME;
     }
@@ -74,6 +77,25 @@ public final class DBEntries {
 
     }
 
+    public final class ProgramacaoEntry {
+        public static final String TABLE_NAME            = "tb_programacao";
+        public static final String COLUMN_ID             = "prog_id";
+        public static final String COLUMN_EVEN_ID        = "prog_even_id";
+        public static final String COLUMN_NAME_DIA       = "prog_dia";
+        public static final String COLUMN_NAME_DESCRICAO = "prog_descricao";
+        public static final String SQL_CREATE_ENTRIES =
+                "CREATE TABLE " + TABLE_NAME + "("
+                        + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                        + COLUMN_EVEN_ID + " INTEGER, "
+                        + COLUMN_NAME_DIA + " DATE NOT NULL, "
+                        + COLUMN_NAME_DESCRICAO + " TEXT, "
+                        + "FOREIGN KEY("+COLUMN_EVEN_ID+") REFERENCES "
+                        + EventoEntry.TABLE_NAME+"("+ EventoEntry.COLUMN_ID +")"
+                        +")";
+        public static final String SQL_DELETE_ENTRIES =
+                "DROP TABLE IF EXISTS " + TABLE_NAME;
+    }
+
     public final class PalestraEntry {
         public static final String TABLE_NAME              = "tb_palestra";
         public static final String COLUMN_NAME_ID          = "para_id";
@@ -98,13 +120,5 @@ public final class DBEntries {
         public static final String COLUMN_NAME_ID      = "para_pate_id";
         public static final String COLUMN_NAME_PARA_ID = "para_pate_para_id";
         public static final String COLUMN_NAME_PATE_ID = "para_pate_pate_id";
-    }
-
-    public final class ProgramacaoEntry {
-        public static final String TABLE_NAME            = "tb_programacao";
-        public static final String COLUMN_NAME_ID        = "prog_id";
-        public static final String COLUMN_NAME_DIA       = "prog_dia";
-        public static final String COLUMN_NAME_DESCRICAO = "prog_descricao";
-        public static final String COLUMN_NAME_EVEN_ID   = "prog_even_id";
     }
  }

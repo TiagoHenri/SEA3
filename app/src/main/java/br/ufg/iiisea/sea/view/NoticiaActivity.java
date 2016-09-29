@@ -34,67 +34,67 @@ public class NoticiaActivity extends AppCompatActivity implements NoticiaView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_noticia);
-
-        presenter = new NoticiaPresenterImpl(this, getApplicationContext());
-
-        ItemListAdapter<Noticia> itemListAdapter = new ItemListAdapter<Noticia>() {
-            @Override
-            public View getView(Noticia item, View convertView, ViewGroup parent) {
-                View view = convertView;
-                if(view == null) {
-                    LayoutInflater inflater = getLayoutInflater();
-                    view = inflater.inflate(R.layout.noticia_item, parent, false);
-                }
-                TextView titulo = (TextView) view.findViewById(R.id.tvNoticiaItemTitulo);
-                TextView conteudo = (TextView) view.findViewById(R.id.tvNoticiaItemConteudo);
-                titulo.setBackgroundColor(Color.BLUE);
-                titulo.setText(item.getTitulo());
-                conteudo.setText(item.getConteudo() + " - " + item.getId() + " - " + item.getTitulo());
-                conteudo.setId((int) item.getId());
-                return view;
-            }
-        };
-        listAdapter = new ListAdapter<>(getApplicationContext(), itemListAdapter);
-
-        lvNoticia = (ListView) findViewById(R.id.lvNoticia);
-        lvNoticia.setAdapter(listAdapter);
-        addNoticia(presenter.preparaNoticiasInicial());
-
-        final EditText titulo, conteudo;
-        titulo = (EditText) findViewById(R.id.titulo);
-        conteudo = (EditText) findViewById(R.id.conteudo);
-        Button button = (Button) findViewById(R.id.button);
-        Button button2 = (Button) findViewById(R.id.button2);
-
-        final NoticiaDAO noticiaDAO = new NoticiaDAO(getApplicationContext());
-        final Evento eventoItem = new Evento(1);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Noticia item = new Noticia();
-                item.setTitulo(titulo.getText().toString());
-                item.setConteudo(conteudo.getText().toString());
-                item.setEvento(eventoItem);
-                try {
-                    noticiaDAO.save(item);
-                    presenter.atualizarNoticias();
-                    Toast.makeText(getApplicationContext(),
-                            "added", Toast.LENGTH_SHORT).show();
-                } catch (SQLiteException ex) {
-                    Log.e("sql", ex.toString());
-                    Toast.makeText(getApplicationContext(),
-                            "impossivel add", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                removeNoticia(new Noticia(0));
-            }
-        });
+//        setContentView(R.layout.activity_noticia);
+//
+//        //presenter = new NoticiaPresenterImpl(this, getApplicationContext(), );
+//
+//        ItemListAdapter<Noticia> itemListAdapter = new ItemListAdapter<Noticia>() {
+//            @Override
+//            public View getView(Noticia item, View convertView, ViewGroup parent) {
+//                View view = convertView;
+//                if(view == null) {
+//                    LayoutInflater inflater = getLayoutInflater();
+//                    view = inflater.inflate(R.layout.noticia_item, parent, false);
+//                }
+//                TextView titulo = (TextView) view.findViewById(R.id.tvNoticiaItemTitulo);
+//                TextView conteudo = (TextView) view.findViewById(R.id.tvNoticiaItemConteudo);
+//                titulo.setBackgroundColor(Color.BLUE);
+//                titulo.setText(item.getTitulo());
+//                conteudo.setText(item.getConteudo() + " - " + item.getId() + " - " + item.getTitulo());
+//                conteudo.setId((int) item.getId());
+//                return view;
+//            }
+//        };
+//        listAdapter = new ListAdapter<>(getApplicationContext(), itemListAdapter);
+//
+//        lvNoticia = (ListView) findViewById(R.id.lvNoticia);
+//        lvNoticia.setAdapter(listAdapter);
+//        presenter.preparaNoticiasInicial();
+//
+//        final EditText titulo, conteudo;
+//        titulo = (EditText) findViewById(R.id.titulo);
+//        conteudo = (EditText) findViewById(R.id.conteudo);
+//        Button button = (Button) findViewById(R.id.button);
+//        Button button2 = (Button) findViewById(R.id.button2);
+//
+//        final NoticiaDAO noticiaDAO = new NoticiaDAO(getApplicationContext());
+//        final Evento eventoItem = new Evento(1);
+//
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Noticia item = new Noticia();
+//                item.setTitulo(titulo.getText().toString());
+//                item.setConteudo(conteudo.getText().toString());
+//                item.setEvento(eventoItem);
+//                try {
+//                    noticiaDAO.save(item);
+//                    presenter.atualizarNoticias();
+//                    Toast.makeText(getApplicationContext(),
+//                            "added", Toast.LENGTH_SHORT).show();
+//                } catch (SQLiteException ex) {
+//                    Log.e("sql", ex.toString());
+//                    Toast.makeText(getApplicationContext(),
+//                            "impossivel add", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//        button2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                removeNoticia(new Noticia(0));
+//            }
+//        });
 
     }
 
@@ -112,7 +112,12 @@ public class NoticiaActivity extends AppCompatActivity implements NoticiaView {
 
     @Override
     public void removeNoticia(Noticia item) {
-        listAdapter.removeItem(item.getId());
+        listAdapter.removeItem(item );
+    }
+
+    @Override
+    public void concluidoAtualizacao() {
+
     }
 
     @Override
