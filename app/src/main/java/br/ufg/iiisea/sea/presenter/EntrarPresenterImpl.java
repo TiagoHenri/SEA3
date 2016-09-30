@@ -71,7 +71,6 @@ public class EntrarPresenterImpl extends PresenterAbstract implements EntrarPres
             view.hideProgress();
             changeIntent((AppCompatActivity) view, HomeActivity.class);
 
-            view.showToastMessage(R.string.msgBemVindo);
             view.finish();
         }
     }

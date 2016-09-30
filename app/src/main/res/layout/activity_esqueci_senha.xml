@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_degrade"
@@ -13,7 +14,7 @@
         android:layout_weight="0.02">
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/ll1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -48,7 +49,7 @@
             android:id="@+id/tvEsqueciSenhaInstrucao2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/linearLayout"
+            android:layout_below="@+id/ll1"
             android:layout_centerHorizontal="true"
             android:text="@string/msgEsqueciSenha2"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -72,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/linearLayout"
+                android:layout_below="@+id/ll1"
                 android:layout_marginLeft="10dp"
                 android:text="@string/email"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -104,6 +105,14 @@
             android:background="@color/green"
             android:text="@string/enviar"
             android:textColor="@color/white" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/logo_sea"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/imageView5" />
 
     </RelativeLayout>
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_degrade"
@@ -13,7 +14,7 @@
         android:layout_weight="0.02">
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/ll1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -35,7 +36,7 @@
             <LinearLayout
                 android:layout_width="347dp"
                 android:layout_height="45dp"
-                android:layout_below="@+id/linearLayout"
+                android:layout_below="@+id/ll1"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
@@ -49,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:layout_below="@+id/linearLayout"
+                    android:layout_below="@+id/ll1"
                     android:layout_marginLeft="10dp"
                     android:text="@string/nome"
                     android:textAppearance="?android:attr/textAppearanceSmall"
@@ -74,7 +75,7 @@
             <LinearLayout
                 android:layout_width="347dp"
                 android:layout_height="45dp"
-                android:layout_below="@+id/linearLayout"
+                android:layout_below="@+id/ll1"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
@@ -88,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:layout_below="@+id/linearLayout"
+                    android:layout_below="@+id/ll1"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:text="@string/email"
@@ -122,7 +123,7 @@
             <LinearLayout
                 android:layout_width="347dp"
                 android:layout_height="45dp"
-                android:layout_below="@+id/linearLayout"
+                android:layout_below="@+id/ll1"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
@@ -136,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:layout_below="@+id/linearLayout"
+                    android:layout_below="@+id/ll1"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:text="@string/senha"
@@ -178,6 +179,14 @@
             android:layout_weight="0.02"
             android:background="@color/yellow"
             android:text="@string/concluir" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/logo_sea"
+            android:layout_above="@+id/btnCadastroConcluir"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/imageView7" />
 
     </RelativeLayout>
 

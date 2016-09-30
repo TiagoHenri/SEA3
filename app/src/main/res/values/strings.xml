@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SEA</string>
+    <string name="app_name">3º SEA</string>
 
     <string name="entrar">ENTRAR</string>
     <string name="registrar">REGISTRAR</string>
@@ -12,6 +12,8 @@
     <string name="logando">Logando</string>
     <string name="carregando">Carregando</string>
     <string name="sucesso">Sucesso!!</string>
+    <string name="checkIn">Fazendo Check-in</string>
+    <string name="fazerCheckin">Fazer Check-in</string>
     <string name="nome">NOME COMPLETO</string>
 
     <string name="esqueceuSenha">Esqueceu sua senha?</string>
@@ -23,12 +25,14 @@
     <string name="msgEsqueciSenha1">Insira seu email e lhe enviaremos um</string>
     <string name="msgEsqueciSenha2">link para redefinir sua senha</string>
     <string name="msgLinkEnviado">Link de redefinição enviado para seu email</string>
-    <string name="msgBemVindo">Bem vindo(a) de volta,</string>
+    <string name="msgBemVindo">Bem vindo(a) de volta, </string>
 
     <string name="erroCampoVazio">Existem campos obrigatórios vazios</string>
     <string name="erroTamanhoSenha">A senha deve ter ao menos 6 dígitos</string>
     <string name="erroRegistro">Erro ao registrar:</string>
     <string name="erroRecuperarLogin">Erro ao recuperar o último login</string>
+    <string name="erroQRCode">QRCode incorreto</string>
+    <string name="erroGeoLocation">Você não está no local correto</string>
 
     <string name="sucessoRegistro">Usuário registrado. Siga instruções no email recebido</string>
 

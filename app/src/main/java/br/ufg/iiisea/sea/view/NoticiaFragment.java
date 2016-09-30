@@ -79,11 +79,11 @@ public class NoticiaFragment extends Fragment implements NoticiaView, SwipeRefre
                 Log.i("Entrou", "itemListAdapter:evneto");
                 TextView titulo = (TextView) view.findViewById(R.id.tvNoticiaItemTitulo);
                 TextView conteudo = (TextView) view.findViewById(R.id.tvNoticiaItemConteudo);
-                titulo.setBackgroundColor(Color.BLUE);
                 titulo.setText(item.getTitulo());
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                conteudo.setText(item.getId() + " - " + item.getConteudo() + " - "+dateFormat.format(item.getData()));
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM HH:mm");
+                titulo.setText(dateFormat.format(item.getData()) + "\n" + titulo.getText().toString());
+                conteudo.setText(item.getConteudo());
                 return view;
             }
         };
