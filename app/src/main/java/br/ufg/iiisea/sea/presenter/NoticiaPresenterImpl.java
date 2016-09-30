@@ -31,9 +31,9 @@ public class NoticiaPresenterImpl extends PresenterAbstract implements NoticiaPr
     @Override
     public void preparaNoticiasInicial() {
         List<Noticia> list = interactor.getNoticiasInicio();
-        Log.i("np", "pNI");
+//        Log.i("np", "pNI");
         if(list.isEmpty()) {
-            view.showNenhumaNoticiaMessage();
+            atualizarNoticias();
         } else {
             view.addNoticia(list);
         }

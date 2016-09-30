@@ -33,13 +33,9 @@ public class HomePresenterImpl extends PresenterAbstract implements HomePresente
    // private ViewPagerAdapter adapter;
 
     public HomePresenterImpl(HomeView view, Context context) {
-        //this.noticiaInteractor = new NoticiaInteractorImpl(context);
-        //this.programacaoInteractor = new ProgramacaoInteractor();
         this.view = view;
         interactor = new HomeInteractorImpl(context, this);
         configuraTabs();
-        //interactor.preparaDadosIniciais();
-        //view.addFragmento(new NoticiaFragment(), "nt");
     }
 
 //    public HomePresenterImpl(HomeView view, Context context) {
@@ -67,6 +63,7 @@ public class HomePresenterImpl extends PresenterAbstract implements HomePresente
 //        }
         Log.i("Evento", evento.getNome());
         view.addFragmento(NoticiaFragment.newInstance(evento), "Notícias");
+
     }
 
     @Override
