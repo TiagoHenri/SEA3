@@ -2,9 +2,13 @@ package br.ufg.iiisea.sea.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.util.Log;
 import br.ufg.iiisea.sea.bean.Evento;
 import br.ufg.iiisea.sea.bean.Programacao;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,7 +39,14 @@ public class ProgramacaoDAO extends AbstractDAO<Programacao> {
         Programacao entity = new Programacao();
         entity.setId(contentValues.getAsInteger(DBEntries.ProgramacaoEntry.COLUMN_ID));
         entity.setDescricao(contentValues.getAsString(DBEntries.ProgramacaoEntry.COLUMN_NAME_DESCRICAO));
-        //entity.setDia();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dateFormat.setLenient(false);
+        try {
+            entity.setData(dateFormat.parse(contentValues.getAsString(DBEntries.ProgramacaoEntry.COLUMN_NAME_DATA)));
+        } catch (NullPointerException|ParseException ex) {
+            Log.e("NoticaDAO:", "dateFormat");
+            entity.setData(new Date(0,0,0));
+        }
         entity.setEvento(new Evento(contentValues.getAsInteger(DBEntries.ProgramacaoEntry.COLUMN_EVEN_ID)));
 
         return entity;
@@ -47,7 +58,13 @@ public class ProgramacaoDAO extends AbstractDAO<Programacao> {
         ContentValues values = new ContentValues();
         values.put(DBEntries.ProgramacaoEntry.COLUMN_ID, entity.getId());
         values.put(DBEntries.ProgramacaoEntry.COLUMN_NAME_DESCRICAO, entity.getDescricao());
-//        values.put(DBEntries.ProgramacaoEntry.COLUMN_NAME_DIA);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            values.put(DBEntries.ProgramacaoEntry.COLUMN_NAME_DATA, dateFormat.format(entity.getData()));
+        } catch (NullPointerException e) {
+            Log.e("ProgramacaoDAO", "toContentValues:dia vazio" + e.toString());
+            values.put(DBEntries.ProgramacaoEntry.COLUMN_NAME_DATA, dateFormat.format(new Date(0,0,0)));
+        }
         values.put(DBEntries.ProgramacaoEntry.COLUMN_EVEN_ID, entity.getEvento().getId());
         return values;
     }

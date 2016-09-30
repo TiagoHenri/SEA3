@@ -28,13 +28,13 @@ public class ProgramacaoActivity extends AppCompatActivity implements Programaca
 
     }
 
-    @Override
-    public void showDescricao(Palestra palestra) {
-
-    }
-
-    @Override
-    public void hideDescricao(Palestra palestra) {
-
-    }
+//    @Override
+//    public void showDescricao(Palestra palestra) {
+//
+//    }
+//
+//    @Override
+//    public void hideDescricao(Palestra palestra) {
+//
+//    }
 }

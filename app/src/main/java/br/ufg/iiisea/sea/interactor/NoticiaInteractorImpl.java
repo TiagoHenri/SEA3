@@ -52,26 +52,6 @@ public class NoticiaInteractorImpl implements NoticiaInteractor {
 
     @Override
     public void atualizarNoticias() {
-//        Noticia ultimaNoticia = noticiaDAO.getUltimaNoticiaPorData();
-//        Backendless.Persistence.of(Noticia.class).find(new AsyncCallback<BackendlessCollection<Noticia>>() {
-//            @Override
-//            public void handleResponse(BackendlessCollection<Noticia> result) {
-//                /*for(int i = 0; i < InitialConfig.noticias.size(); i++){
-//                    InitialConfig.noticias.add(result.getCurrentPage().get(i));
-//                    Log.e("Noticias: ", InitialConfig.noticias.get(i).getTitulo());
-//                }*/
-//
-//                noticiaDAO.existeNoticiaPorId();
-//                callback.noticiasAtualizadas();
-//                callback.noticiasNovas();
-//                callback.naoExisteNoticiasNovas();
-//            }
-//
-//            @Override
-//            public void handleFault(BackendlessFault backendlessFault) {
-//                //Tomar cuidado com esse 1 pois é só um tipo
-//            }
-//        });
         Log.i("entrou", "atualizarNoticias");
 
         final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss 'GMT'Z");
@@ -90,7 +70,7 @@ public class NoticiaInteractorImpl implements NoticiaInteractor {
 
         QueryOptions queryOptions = new QueryOptions();
         queryOptions.addRelated( "evento" );
-        queryOptions.setPageSize(20);
+//        queryOptions.setPageSize(20);
         dataQuery.setQueryOptions( queryOptions );
 
         Backendless.Data.of(Noticia.class).find(dataQuery, new AsyncCallback<BackendlessCollection<Noticia>>() {

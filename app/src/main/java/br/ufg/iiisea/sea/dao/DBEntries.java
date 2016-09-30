@@ -9,7 +9,7 @@ import br.ufg.iiisea.sea.bean.Evento;
 public final class DBEntries {
 
     public static final String BD_NOME = "SEA3UFG";
-    public static final int    BD_VERSION = 4;
+    public static final int    BD_VERSION = 5;
 
     private DBEntries() {
     }
@@ -81,13 +81,13 @@ public final class DBEntries {
         public static final String TABLE_NAME            = "tb_programacao";
         public static final String COLUMN_ID             = "prog_id";
         public static final String COLUMN_EVEN_ID        = "prog_even_id";
-        public static final String COLUMN_NAME_DIA       = "prog_dia";
+        public static final String COLUMN_NAME_DATA       = "prog_dia";
         public static final String COLUMN_NAME_DESCRICAO = "prog_descricao";
         public static final String SQL_CREATE_ENTRIES =
                 "CREATE TABLE " + TABLE_NAME + "("
                         + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                         + COLUMN_EVEN_ID + " INTEGER, "
-                        + COLUMN_NAME_DIA + " DATE NOT NULL, "
+                        + COLUMN_NAME_DATA + " DATE, "
                         + COLUMN_NAME_DESCRICAO + " TEXT, "
                         + "FOREIGN KEY("+COLUMN_EVEN_ID+") REFERENCES "
                         + EventoEntry.TABLE_NAME+"("+ EventoEntry.COLUMN_ID +")"
@@ -98,14 +98,29 @@ public final class DBEntries {
 
     public final class PalestraEntry {
         public static final String TABLE_NAME              = "tb_palestra";
-        public static final String COLUMN_NAME_ID          = "para_id";
+        public static final String COLUMN_ID               = "para_id";
         public static final String COLUMN_NAME_NOME        = "para_nome";
         public static final String COLUMN_NAME_DESCRICAO   = "para_descricao";
-        public static final String COLUMN_NAME_SALA_ID     = "para_sala_id";
-        public static final String COLUMN_NAME_PROG_ID     = "para_prog_id";
+        public static final String COLUMN_NAME_LUGAR       = "para_lugar";
+        public static final String COLUMN_PROG_ID     = "para_prog_id";
         public static final String COLUMN_NAME_HORA_INICIO = "para_hora_inicio";
         public static final String COLUMN_NAME_HORA_FIM    = "para_hora_fim";
         public static final String COLUMN_NAME_TIPO        = "para_tipo";
+        public static final String SQL_CREATE_ENTRIES =
+                "CREATE TABLE " + TABLE_NAME + "("
+                        + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                        + COLUMN_NAME_NOME + " TEXT, "
+                        + COLUMN_NAME_DESCRICAO + " TEXT, "
+                        + COLUMN_NAME_LUGAR + " TEXT, "
+                        + COLUMN_PROG_ID + " INTEGER, "
+                        + COLUMN_NAME_HORA_INICIO + " DATETIME, "
+                        + COLUMN_NAME_HORA_FIM + " DATETIME, "
+                        + COLUMN_NAME_TIPO + " TINYINT, "
+                        + "FOREIGN KEY("+COLUMN_PROG_ID+") REFERENCES "
+                        + ProgramacaoEntry.TABLE_NAME+"("+ ProgramacaoEntry.COLUMN_ID +")"
+                        +")";
+        public static final String SQL_DELETE_ENTRIES =
+                "DROP TABLE IF EXISTS " + TABLE_NAME;
     }
 
     public final class PalestranteEntry {

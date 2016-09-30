@@ -71,7 +71,7 @@ public class NoticiaDAO extends AbstractDAO<Noticia> {
         Noticia entity = new Noticia();
         entity.setId(contentValues.getAsInteger(DBEntries.NoticiaEntry.COLUMN_ID));
 
-        Log.i("entrou", "data");
+//        Log.i("entrou", "data");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         dateFormat.setLenient(false);
         try {

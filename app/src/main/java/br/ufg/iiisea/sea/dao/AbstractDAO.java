@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.util.Log;
 import br.ufg.iiisea.sea.utils.MutableBean;
 
 import java.util.LinkedList;
@@ -47,6 +48,7 @@ public abstract class AbstractDAO<T extends MutableBean> {
     public void deleteAll() throws SQLiteException {
         try {
             writableDatabase.execSQL("DELETE FROM " + getTableName());
+            Log.i("AbstractDAO:deleteAll", "Deletou todas as colunas de "+getTableName()+".");
         } catch (SQLiteException ex) {
             throw ex;
         }

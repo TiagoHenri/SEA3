@@ -7,5 +7,6 @@ import br.ufg.iiisea.sea.bean.Palestra;
  */
 public interface ProgramacaoPresenter {
     void abrirDescricao(Palestra palestra);
+    void preparaPaletrasInicial();
     void atualizarPalestras();
 }

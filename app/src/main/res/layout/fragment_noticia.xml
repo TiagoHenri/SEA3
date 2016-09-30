@@ -1,27 +1,27 @@
-<android.support.v4.widget.SwipeRefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/swipe_refresh_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="br.ufg.iiisea.sea.view.NoticiaFragment">
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
         android:background="@color/blue">
 
+    <android.support.v4.widget.SwipeRefreshLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/swipe_refresh_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="br.ufg.iiisea.sea.view.NoticiaFragment">
 
-    <ListView
+        <ListView
             android:layout_width="match_parent"
             android:layout_height="521dp"
             android:id="@+id/lstNoticias" android:background="@color/green"
         style="@style/Widget.AppCompat.ListView" />
+    </android.support.v4.widget.SwipeRefreshLayout>
     <TextView
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:text="New Text"
             android:id="@+id/tvTeste" android:layout_gravity="left|bottom"
-        android:background="@color/blue" />
+            android:background="@color/blue" />
 </FrameLayout>
-</android.support.v4.widget.SwipeRefreshLayout>
