@@ -5,6 +5,8 @@ import android.content.Context;
 import android.util.Log;
 import br.ufg.iiisea.sea.bean.Evento;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -52,8 +54,16 @@ public class EventoDAO extends AbstractDAO<Evento> {
         entity.setId(contentValues.getAsInteger(DBEntries.EventoEntry.COLUMN_ID));
         entity.setNome(contentValues.getAsString(DBEntries.EventoEntry.COLUMN_NAME_NOME));
         entity.setDescricao(contentValues.getAsString(DBEntries.EventoEntry.COLUMN_NAME_DESCRICAO));
-//        entity.setDataInicio(contentValues.getAsString(DBEntries.EventoEntry.COLUMN_NAME_DATA_INICIO));
-//        entity.setDataFim(contentValues.getAsString(DBEntries.EventoEntry.COLUMN_NAME_DATA_FIM));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);
+        try {
+            Date dataInicio = dateFormat.parse(contentValues.getAsString(DBEntries.EventoEntry.COLUMN_NAME_DATA_INICIO));
+            Date dataFim = dateFormat.parse(contentValues.getAsString(DBEntries.EventoEntry.COLUMN_NAME_DATA_FIM));
+            entity.setDataInicio(dataInicio);
+            entity.setDataFim(dataFim);
+        } catch (NullPointerException|ParseException e) {
+            Log.e("EventoDAO", "toEntity: data inválida: "+ e.toString());
+        }
         return entity;
     }
 
@@ -63,8 +73,16 @@ public class EventoDAO extends AbstractDAO<Evento> {
         values.put(DBEntries.EventoEntry.COLUMN_ID, entity.getId());
         values.put(DBEntries.EventoEntry.COLUMN_NAME_NOME, entity.getNome());
         values.put(DBEntries.EventoEntry.COLUMN_NAME_DESCRICAO, entity.getDescricao());
-//        values.put(DBEntries.EventoEntry.COLUMN_NAME_DATA_FIM, entity.getDataFim().toString());
-//        values.put(DBEntries.EventoEntry.COLUMN_NAME_DATA_INICIO, entity.getDataInicio().toString());
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        if(entity.getDataFim() == null)
+            entity.setDataFim(new Date(0,0,0));
+        if(entity.getDataInicio() == null)
+            entity.setDataInicio(new Date(0,0,0));
+        String dataFim = dateFormat.format(entity.getDataFim());
+        String dataInicio = dateFormat.format(entity.getDataInicio());
+        values.put(DBEntries.EventoEntry.COLUMN_NAME_DATA_FIM, dataFim);
+        values.put(DBEntries.EventoEntry.COLUMN_NAME_DATA_INICIO, dataInicio);
         return values;
     }
 }

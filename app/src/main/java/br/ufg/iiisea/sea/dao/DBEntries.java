@@ -2,6 +2,7 @@ package br.ufg.iiisea.sea.dao;
 
 import android.provider.BaseColumns;
 import br.ufg.iiisea.sea.bean.Evento;
+import br.ufg.iiisea.sea.bean.Palestra;
 
 /**
  * Created by fellipe on 22/09/16.
@@ -9,7 +10,7 @@ import br.ufg.iiisea.sea.bean.Evento;
 public final class DBEntries {
 
     public static final String BD_NOME = "SEA3UFG";
-    public static final int    BD_VERSION = 5;
+    public static final int    BD_VERSION = 7;
 
     private DBEntries() {
     }
@@ -102,11 +103,11 @@ public final class DBEntries {
         public static final String COLUMN_NAME_NOME        = "para_nome";
         public static final String COLUMN_NAME_DESCRICAO   = "para_descricao";
         public static final String COLUMN_NAME_LUGAR       = "para_lugar";
-        public static final String COLUMN_PROG_ID     = "para_prog_id";
+        public static final String COLUMN_PROG_ID          = "para_prog_id";
         public static final String COLUMN_NAME_HORA_INICIO = "para_hora_inicio";
         public static final String COLUMN_NAME_HORA_FIM    = "para_hora_fim";
         public static final String COLUMN_NAME_TIPO        = "para_tipo";
-        public static final String SQL_CREATE_ENTRIES =
+        public static final String SQL_CREATE_ENTRIES      =
                 "CREATE TABLE " + TABLE_NAME + "("
                         + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                         + COLUMN_NAME_NOME + " TEXT, "
@@ -115,7 +116,7 @@ public final class DBEntries {
                         + COLUMN_PROG_ID + " INTEGER, "
                         + COLUMN_NAME_HORA_INICIO + " DATETIME, "
                         + COLUMN_NAME_HORA_FIM + " DATETIME, "
-                        + COLUMN_NAME_TIPO + " TINYINT, "
+                        + COLUMN_NAME_TIPO + " TEXT, "
                         + "FOREIGN KEY("+COLUMN_PROG_ID+") REFERENCES "
                         + ProgramacaoEntry.TABLE_NAME+"("+ ProgramacaoEntry.COLUMN_ID +")"
                         +")";
@@ -125,15 +126,38 @@ public final class DBEntries {
 
     public final class PalestranteEntry {
         public static final String TABLE_NAME            = "tb_palestrante";
-        public static final String COLUMN_NAME_ID        = "pate_id";
+        public static final String COLUMN_ID        = "pate_id";
         public static final String COLUMN_NAME_NOME      = "pate_nome";
         public static final String COLUMN_NAME_BIOGRAFIA = "pate_biografia";
+
+
+        public static final String SQL_CREATE_ENTRIES =
+                "CREATE TABLE " + TABLE_NAME + "("
+                        + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                        + COLUMN_NAME_NOME + " TEXT NOT NULL, "
+                        + COLUMN_NAME_BIOGRAFIA + " TEXT)";
+        public static final String SQL_DELETE_ENTRIES =
+                "DROP TABLE IF EXISTS " + TABLE_NAME;
+
     }
 
     public final class PalestraPalestranteEntry {
         public static final String TABLE_NAME          = "tb_para_pate";
-        public static final String COLUMN_NAME_ID      = "para_pate_id";
-        public static final String COLUMN_NAME_PARA_ID = "para_pate_para_id";
-        public static final String COLUMN_NAME_PATE_ID = "para_pate_pate_id";
+        public static final String COLUMN_ID          = "para_pate_id";
+        public static final String COLUMN_PARA_ID      = "para_pate_para_id";
+        public static final String COLUMN_PATE_ID      = "para_pate_pate_id";
+
+        public static final String SQL_CREATE_ENTRIES =
+                "CREATE TABLE " + TABLE_NAME + "("
+                        + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                        + COLUMN_PARA_ID + " INTEGER, "
+                        + COLUMN_PATE_ID + " INTEGER, "
+                        + "FOREIGN KEY("+COLUMN_PATE_ID+") REFERENCES "
+                        + PalestranteEntry.TABLE_NAME+"("+ PalestranteEntry.COLUMN_ID +"), "
+                        + "FOREIGN KEY("+COLUMN_PARA_ID+") REFERENCES "
+                        + PalestraEntry.TABLE_NAME+"("+ PalestraEntry.COLUMN_ID +")"
+                        +")";
+        public static final String SQL_DELETE_ENTRIES =
+                "DROP TABLE IF EXISTS " + TABLE_NAME;
     }
  }

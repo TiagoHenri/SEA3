@@ -9,7 +9,7 @@ import java.util.Date;
  * Created by fellipe on 14/09/16.
  */
 public class Programacao implements MutableBean, Serializable {
-    private long id;
+    private long id = 0;
     private Date data;
     private String descricao;
     private Evento evento;

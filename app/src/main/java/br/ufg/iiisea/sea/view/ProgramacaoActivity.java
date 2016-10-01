@@ -6,6 +6,8 @@ import android.widget.ListView;
 import br.ufg.iiisea.sea.R;
 import br.ufg.iiisea.sea.bean.Palestra;
 
+import java.util.List;
+
 public class ProgramacaoActivity extends AppCompatActivity implements ProgramacaoView {
 
     private ListView lvPalestras;
@@ -20,6 +22,11 @@ public class ProgramacaoActivity extends AppCompatActivity implements Programaca
 
     @Override
     public void addPalestra(Palestra palestra) {
+
+    }
+
+    @Override
+    public void addPalestra(List<Palestra> palestraList) {
 
     }
 
