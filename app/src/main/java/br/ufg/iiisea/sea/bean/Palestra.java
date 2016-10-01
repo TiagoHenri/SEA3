@@ -11,23 +11,16 @@ import java.util.List;
  */
 public class Palestra implements MutableBean {
     public enum Tipo {
-        PALESTRA {
-            public int getId() {
-                return 1;
-            }
-            @Override
-            public String toString() {
-                return "Palestra";
-            }
-        },
-        MINICURSO {
-            public int getId() {
-                return 0;
-            }
-            @Override
-            public String toString() {
-                return "Minicurso";
-            }
+        PALESTRA(1, "palestra"),
+        MINICURSO(2, "minicurso"),
+        OUTROS(3, "outros"),
+        UNDEFINED(4, "undefined");
+
+        int i;
+        String nome;
+        Tipo(int i, String nome) {
+            this.i = i;
+            this.nome = nome;
         }
     }
 
@@ -36,27 +29,32 @@ public class Palestra implements MutableBean {
     private String descricao;
     private String lugar;
     private Programacao programacao;
-    private Date hora_inicio;
-    private Date hora_fim;
+    private Date horaInicio;
+    private Date horaFim;
     private Tipo tipo;
 
     private List<Palestrante> palestrantes;
 
-    public Palestra(long id, String nome, String descricao, String lugar, Programacao programacao, Date hora_inicio, Date hora_fim, Tipo tipo) {
+    public Palestra() {
+    }
+
+    public Palestra(long id, String nome, String descricao, String lugar, Programacao programacao, Date horaInicio, Date horaFim, Tipo tipo) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.lugar = lugar;
         this.programacao = programacao;
-        this.hora_inicio = hora_inicio;
-        this.hora_fim = hora_fim;
+        this.horaInicio = horaInicio;
+        this.horaFim = horaFim;
         this.tipo = tipo;
     }
 
+    @Override
     public long getId() {
         return id;
     }
 
+    @Override
     public void setId(long id) {
         this.id = id;
     }
@@ -93,20 +91,20 @@ public class Palestra implements MutableBean {
         this.programacao = programacao;
     }
 
-    public Date getHora_inicio() {
-        return hora_inicio;
+    public Date getHoraInicio() {
+        return horaInicio;
     }
 
-    public void setHora_inicio(Date hora_inicio) {
-        this.hora_inicio = hora_inicio;
+    public void setHoraInicio(Date horaInicio) {
+        this.horaInicio = horaInicio;
     }
 
-    public Date getHora_fim() {
-        return hora_fim;
+    public Date getHoraFim() {
+        return horaFim;
     }
 
-    public void setHora_fim(Date hora_fim) {
-        this.hora_fim = hora_fim;
+    public void setHoraFim(Date horaFim) {
+        this.horaFim = horaFim;
     }
 
     public Tipo getTipo() {

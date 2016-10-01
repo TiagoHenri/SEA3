@@ -13,6 +13,10 @@ public class Palestrante implements MutableBean {
     private String nome;
     private String biografia;
 
+    public Palestrante() {
+
+    }
+
     public Palestrante(long id, String nome, String biografia) {
         this.id = id;
         this.nome = nome;
