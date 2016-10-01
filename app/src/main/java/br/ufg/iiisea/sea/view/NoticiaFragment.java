@@ -120,7 +120,7 @@ public class NoticiaFragment extends Fragment implements NoticiaView, SwipeRefre
 
     @Override
     public void finish() {
-
+        onDestroy();
     }
 
     @Override

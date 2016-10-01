@@ -31,6 +31,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(DBEntries.EventoEntry.SQL_CREATE_ENTRIES);
         db.execSQL(DBEntries.NoticiaEntry.SQL_CREATE_ENTRIES);
         db.execSQL(DBEntries.ProgramacaoEntry.SQL_CREATE_ENTRIES);
+        db.execSQL(DBEntries.PalestraEntry.SQL_CREATE_ENTRIES);
     }
 
     @Override
@@ -39,6 +40,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(DBEntries.EventoEntry.SQL_DELETE_ENTRIES);
         db.execSQL(DBEntries.NoticiaEntry.SQL_DELETE_ENTRIES);
         db.execSQL(DBEntries.ProgramacaoEntry.SQL_DELETE_ENTRIES);
+        db.execSQL(DBEntries.PalestraEntry.SQL_DELETE_ENTRIES);
         onCreate(db);
     }
 

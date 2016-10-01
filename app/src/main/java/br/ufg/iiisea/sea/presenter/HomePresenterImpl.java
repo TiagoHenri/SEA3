@@ -13,11 +13,9 @@ import br.ufg.iiisea.sea.control.InitialConfig;
 import br.ufg.iiisea.sea.interactor.*;
 import br.ufg.iiisea.sea.utils.PresenterAbstract;
 import br.ufg.iiisea.sea.utils.ViewPagerAdapter;
-import br.ufg.iiisea.sea.view.HomeActivity;
-import br.ufg.iiisea.sea.view.HomeView;
-import br.ufg.iiisea.sea.view.ListFragment;
-import br.ufg.iiisea.sea.view.NoticiaFragment;
+import br.ufg.iiisea.sea.view.*;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -33,13 +31,9 @@ public class HomePresenterImpl extends PresenterAbstract implements HomePresente
    // private ViewPagerAdapter adapter;
 
     public HomePresenterImpl(HomeView view, Context context) {
-        //this.noticiaInteractor = new NoticiaInteractorImpl(context);
-        //this.programacaoInteractor = new ProgramacaoInteractor();
         this.view = view;
         interactor = new HomeInteractorImpl(context, this);
         configuraTabs();
-        //interactor.preparaDadosIniciais();
-        //view.addFragmento(new NoticiaFragment(), "nt");
     }
 
 //    public HomePresenterImpl(HomeView view, Context context) {
@@ -61,12 +55,14 @@ public class HomePresenterImpl extends PresenterAbstract implements HomePresente
 
     @Override
     public void dadosIniciaisEncontrado(Evento evento, List<Programacao> programacaoList) {
-
-//        for(int i = 0; i < programacaoList.size(); i++) {
-//            view.addFragmento(ProgramacaoFragment(programacaoList.get(i)), "Programacao dia "+programacaoList.get(i).);
-//        }
         Log.i("Evento", evento.getNome());
         view.addFragmento(NoticiaFragment.newInstance(evento), "Notícias");
+        for(int i = 0; i < programacaoList.size(); i++) {
+            Programacao prog = programacaoList.get(i);
+            String nome = prog.getDescricao();
+            view.addFragmento(ProgramacaoFragment.newInstance(prog), nome);
+        }
+
     }
 
     @Override

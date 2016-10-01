@@ -9,7 +9,7 @@ public interface ProgramacaoView {
 
     void addPalestra(Palestra palestra);
     void removePalestra(Palestra palestra);
-    void showDescricao(Palestra palestra);
-    void hideDescricao(Palestra palestra);
+//    void showDescricao(Palestra palestra);
+//    void hideDescricao(Palestra palestra);
 
 }

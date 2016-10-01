@@ -2,15 +2,15 @@ package br.ufg.iiisea.sea.bean;
 
 import br.ufg.iiisea.sea.utils.MutableBean;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by fellipe on 14/09/16.
  */
-public class Programacao implements MutableBean {
+public class Programacao implements MutableBean, Serializable {
     private long id;
-    private Date dia;
+    private Date data;
     private String descricao;
     private Evento evento;
 
@@ -19,7 +19,7 @@ public class Programacao implements MutableBean {
 
     public Programacao(long id, Date dia, String descricao, Evento evento) {
         this.id = id;
-        this.dia = dia;
+        this.data = dia;
         this.descricao = descricao;
         this.evento = evento;
     }
@@ -32,12 +32,12 @@ public class Programacao implements MutableBean {
         this.id = id;
     }
 
-    public Date getDia() {
-        return dia;
+    public Date getData() {
+        return data;
     }
 
-    public void setDia(Date dia) {
-        this.dia = dia;
+    public void setData(Date data) {
+        this.data = data;
     }
 
     public String getDescricao() {
