@@ -1,5 +1,6 @@
 package br.ufg.iiisea.sea.bean;
 
+import android.support.annotation.NonNull;
 import br.ufg.iiisea.sea.utils.ListableBean;
 import br.ufg.iiisea.sea.utils.MutableBean;
 
@@ -81,7 +82,11 @@ public class Noticia implements ListableBean, MutableBean {
 
         Noticia noticia = (Noticia) o;
 
-        return noticia.id == id;
+        if (id != noticia.id) return false;
+        if (titulo != null ? !titulo.equals(noticia.titulo) : noticia.titulo != null) return false;
+        if (data != null ? !data.equals(noticia.data) : noticia.data != null) return false;
+        if (conteudo != null ? !conteudo.equals(noticia.conteudo) : noticia.conteudo != null) return false;
+        return evento != null ? evento.equals(noticia.evento) : noticia.evento == null;
 
     }
 
@@ -93,5 +98,15 @@ public class Noticia implements ListableBean, MutableBean {
         result = 31 * result + (conteudo != null ? conteudo.hashCode() : 0);
         result = 31 * result + (evento != null ? evento.hashCode() : 0);
         return result;
+    }
+
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        Noticia noticia = (Noticia) o;
+
+        if (getData() == null || noticia.getData() == null)
+            return 0;
+        return -1*getData().compareTo(noticia.getData());
     }
 }

@@ -1,5 +1,6 @@
 package br.ufg.iiisea.sea.bean;
 
+import android.support.annotation.NonNull;
 import br.ufg.iiisea.sea.utils.MutableBean;
 
 import java.util.ArrayList;
@@ -47,5 +48,10 @@ public class Palestrante implements MutableBean {
 
     public void setBiografia(String biografia) {
         this.biografia = biografia;
+    }
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        return 0;
     }
 }

@@ -1,5 +1,6 @@
 package br.ufg.iiisea.sea.bean;
 
+import android.support.annotation.NonNull;
 import br.ufg.iiisea.sea.utils.MutableBean;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Created by fellipe on 14/09/16.
  */
-public class Usuario implements MutableBean{
+public class Usuario implements MutableBean {
 
     private long id;
     private String nome;
@@ -59,5 +60,10 @@ public class Usuario implements MutableBean{
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        return 0;
     }
 }
