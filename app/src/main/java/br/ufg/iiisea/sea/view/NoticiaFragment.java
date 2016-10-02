@@ -99,7 +99,7 @@ public class NoticiaFragment extends Fragment implements NoticiaView, SwipeRefre
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 //        Log.i("Entrou", "onCreateView");
         final View convertView = inflater.inflate(R.layout.fragment_noticia, container, false);
-        swipeRefreshLayout = (SwipeRefreshLayout) convertView.findViewById(R.id.swipe_refresh_container);
+        swipeRefreshLayout = (SwipeRefreshLayout) convertView.findViewById(R.id.srl_noticia_fragment);
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeColors(android.R.color.holo_green_dark,
                 android.R.color.holo_red_dark,

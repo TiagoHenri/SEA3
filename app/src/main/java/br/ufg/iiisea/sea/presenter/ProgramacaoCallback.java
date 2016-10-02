@@ -9,8 +9,10 @@ import java.util.List;
  */
 public interface ProgramacaoCallback {
     interface PaletrasListener {
-        void onSavedPalestras(List<Palestra> palestrasNovas);
+        void onNewPalestras(List<Palestra> palestrasNovas);
         void onUpdatedPalestras(List<Palestra> palestrasModificadas);
+        void onDeletedPalestras(List<Palestra> palestrasDeletadas);
+        void onNoPalestras();
         void onError(String msg);
     }
 }

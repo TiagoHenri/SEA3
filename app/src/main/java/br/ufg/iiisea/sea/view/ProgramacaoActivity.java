@@ -35,6 +35,16 @@ public class ProgramacaoActivity extends AppCompatActivity implements Programaca
 
     }
 
+    @Override
+    public void showNenhumaPalestraDialog() {
+
+    }
+
+    @Override
+    public void concluidoBusca() {
+
+    }
+
 //    @Override
 //    public void showDescricao(Palestra palestra) {
 //

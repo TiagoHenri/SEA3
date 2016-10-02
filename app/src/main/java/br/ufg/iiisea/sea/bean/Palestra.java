@@ -1,6 +1,7 @@
 package br.ufg.iiisea.sea.bean;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 import br.ufg.iiisea.sea.utils.MutableBean;
 
 import java.util.ArrayList;
@@ -119,6 +120,55 @@ public class Palestra implements MutableBean {
 
     public void setTipo(Tipo tipo) {
         this.tipo = tipo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Palestra palestra = (Palestra) o;
+
+        if (id != palestra.id) return false;
+        if (nome != null ? !nome.equals(palestra.nome) : palestra.nome != null) return false;
+        if (descricao != null ? !descricao.equals(palestra.descricao) : palestra.descricao != null) return false;
+        if (lugar != null ? !lugar.equals(palestra.lugar) : palestra.lugar != null) return false;
+        if (programacao != null ? !programacao.equals(palestra.programacao) : palestra.programacao != null)
+            return false;
+        if (horaInicio != null ? !horaInicio.equals(palestra.horaInicio) : palestra.horaInicio != null) return false;
+        if (horaFim != null ? !horaFim.equals(palestra.horaFim) : palestra.horaFim != null) return false;
+        if (tipo != palestra.tipo) return false;
+        return palestrantes != null ? palestrantes.equals(palestra.palestrantes) : palestra.palestrantes == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (nome != null ? nome.hashCode() : 0);
+        result = 31 * result + (descricao != null ? descricao.hashCode() : 0);
+        result = 31 * result + (lugar != null ? lugar.hashCode() : 0);
+        result = 31 * result + (programacao != null ? programacao.hashCode() : 0);
+        result = 31 * result + (horaInicio != null ? horaInicio.hashCode() : 0);
+        result = 31 * result + (horaFim != null ? horaFim.hashCode() : 0);
+        result = 31 * result + (tipo != null ? tipo.hashCode() : 0);
+        result = 31 * result + (palestrantes != null ? palestrantes.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Palestra{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", lugar='" + lugar + '\'' +
+                ", programacao=" + programacao +
+                ", horaInicio=" + horaInicio +
+                ", horaFim=" + horaFim +
+                ", tipo=" + tipo +
+                ", palestrantes=" + palestrantes +
+                '}';
     }
 
     public List<Palestrante> getPalestrantes() {

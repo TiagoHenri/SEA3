@@ -12,6 +12,8 @@ public interface ProgramacaoView {
     void addPalestra(Palestra palestra);
     void addPalestra(List<Palestra> palestraList);
     void removePalestra(Palestra palestra);
+    void showNenhumaPalestraDialog();
+    void concluidoBusca();
 //    void showDescricao(Palestra palestra);
 //    void hideDescricao(Palestra palestra);
 

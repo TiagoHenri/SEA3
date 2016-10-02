@@ -8,5 +8,6 @@ import java.util.List;
  * Created by fellipe on 30/09/16.
  */
 public interface ProgramacaoInteractor {
-    void buscaPalestraInicio();
+    List<Palestra> buscaPalestraInicio();
+    void atualizaPalestras();
 }
