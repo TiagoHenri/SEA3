@@ -104,7 +104,6 @@ public class Noticia implements ListableBean, MutableBean {
     @Override
     public int compareTo(@NonNull Object o) {
         Noticia noticia = (Noticia) o;
-
         if (getData() == null || noticia.getData() == null)
             return 0;
         return -1*getData().compareTo(noticia.getData());
