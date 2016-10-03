@@ -107,10 +107,10 @@ public class NoticiaFragment extends Fragment implements NoticiaView, SwipeRefre
                 android.R.color.holo_orange_dark);
         lstNoticias = (ListView) convertView.findViewById(R.id.lstNoticias);
 
-        TextView tvTeste = (TextView) convertView.findViewById(R.id.tvTeste);
-        Evento e = (Evento) getArguments().getSerializable(EVENTO_ATUAL);
-        String teste = (e != null) ? e.getNome() : "nao veio";
-        tvTeste.setText(teste);
+//        TextView tvTeste = (TextView) convertView.findViewById(R.id.tvTeste);
+//        Evento e = (Evento) getArguments().getSerializable(EVENTO_ATUAL);
+//        String teste = (e != null) ? e.getNome() : "nao veio";
+//        tvTeste.setText(teste);
 
         lstNoticias.setAdapter(lstAdapter);
 

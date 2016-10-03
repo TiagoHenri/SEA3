@@ -18,10 +18,4 @@
             android:id="@+id/lstNoticias" android:background="@color/green"
         style="@style/Widget.AppCompat.ListView" />
     </android.support.v4.widget.SwipeRefreshLayout>
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:text="New Text"
-            android:id="@+id/tvTeste" android:layout_gravity="left|bottom"
-            android:background="@color/blue" />
 </FrameLayout>
