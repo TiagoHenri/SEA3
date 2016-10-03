@@ -37,11 +37,6 @@
             android:name=".view.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".view.ProgramacaoActivity"/>
-        <activity
-            android:name=".view.NoticiaActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".view.PalestraActivity"
             android:screenOrientation="portrait"

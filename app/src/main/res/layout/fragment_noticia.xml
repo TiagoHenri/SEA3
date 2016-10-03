@@ -2,20 +2,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-        android:background="@color/blue">
+    android:background="@color/blue">
 
     <android.support.v4.widget.SwipeRefreshLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/swipe_refresh_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context="br.ufg.iiisea.sea.view.NoticiaFragment">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/swipe_refresh_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="br.ufg.iiisea.sea.view.NoticiaFragment">
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="521dp"
-            android:id="@+id/lstNoticias" android:background="@color/green"
-        style="@style/Widget.AppCompat.ListView" />
+            android:layout_height="match_parent"
+            android:id="@+id/lstNoticias"
+            android:background="@color/green"
+            style="@style/Widget.AppCompat.ListView" />
     </android.support.v4.widget.SwipeRefreshLayout>
 </FrameLayout>

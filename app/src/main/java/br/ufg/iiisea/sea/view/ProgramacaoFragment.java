@@ -18,6 +18,8 @@ import br.ufg.iiisea.sea.presenter.ProgramacaoPresenterImpl;
 import br.ufg.iiisea.sea.utils.ItemListAdapter;
 import br.ufg.iiisea.sea.utils.ListAdapter;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -57,7 +59,10 @@ public class ProgramacaoFragment  extends Fragment implements ProgramacaoView {
                     LayoutInflater inflater = LayoutInflater.from(getContext());
                     view = inflater.inflate(R.layout.palestra_item, viewGroup, false);
                 }
-                TextView tvPalestra = (TextView) view.findViewById(R.id.tvPalestra);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM HH:mm");
+                TextView tvPalestra = (TextView) view.findViewById(R.id.tvPalestraItemTitulo);
+                Date dataInicio = item.getHoraInicio();
+                Date dataFim = item.getHoraFim();
                 tvPalestra.setText(item.getNome());
                 return view;
             }

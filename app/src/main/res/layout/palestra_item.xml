@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent" android:weightSum="1">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" android:weightSum="1">
 
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.29"
+        android:weightSum="1">
+
+        <TextView
+            android:text="TextView"
             android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:text="Palestra 1"
-            android:id="@+id/tvPalestra"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="0.12"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            android:textColor="@color/white"
+            android:textStyle="normal|bold|italic"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/tvPalestraItemTitulo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/textView2"
+            android:layout_weight="0.12"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/yellow"
+            android:layout_marginRight="5dp"
+            android:layout_height="3dp" />
+    </LinearLayout>
 </LinearLayout>
