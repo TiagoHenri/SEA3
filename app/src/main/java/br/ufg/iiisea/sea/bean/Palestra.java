@@ -1,5 +1,6 @@
 package br.ufg.iiisea.sea.bean;
 
+import android.support.annotation.NonNull;
 import br.ufg.iiisea.sea.utils.MutableBean;
 
 import java.util.ArrayList;
@@ -10,6 +11,11 @@ import java.util.List;
  * Created by fellipe on 14/09/16.
  */
 public class Palestra implements MutableBean {
+    @Override
+    public int compareTo(@NonNull Object o) {
+        return 0;
+    }
+
     public enum Tipo {
         PALESTRA(1, "palestra"),
         MINICURSO(2, "minicurso"),

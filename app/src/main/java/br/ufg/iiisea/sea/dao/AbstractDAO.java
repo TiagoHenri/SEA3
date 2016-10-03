@@ -41,8 +41,19 @@ public abstract class AbstractDAO<T extends MutableBean> {
         }
     }
 
-    public void delete(T entity) {
+    public long delete(T entity) throws SQLiteException {
+        try {
+            ContentValues valores = toContentValues(entity);
 
+            String[] valoresParaSubstituir = {
+                    String.valueOf(entity.getId())
+            };
+
+            long result = writableDatabase.delete(getTableName(), getKeyPrimaryColumnName() + " =  ?", valoresParaSubstituir);
+            return result;
+        } catch (SQLiteException ex) {
+            throw ex;
+        }
     }
 
     public void deleteAll() throws SQLiteException {

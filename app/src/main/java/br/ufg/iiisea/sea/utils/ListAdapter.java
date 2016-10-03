@@ -6,10 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by fellipe on 23/09/16.
@@ -28,13 +25,25 @@ public class ListAdapter<T extends MutableBean> extends BaseAdapter {
 
     public void addItem(T item) {
         this.list.add(item);
+        sort();
         notifyDataSetChanged();
     }
 
     public void removeItem(T item) {
-        list.remove(item);
+
+        for(int i = 0; i < list.size(); i++) {
+            T aux = list.get(i);
+            if(aux.getId() == item.getId())
+                list.remove(aux);
+        }
+        sort();
         notifyDataSetChanged();
     }
+
+    public void sort() {
+        Collections.sort(list);
+    }
+
 
     @Override
     public int getCount() {
@@ -53,7 +62,6 @@ public class ListAdapter<T extends MutableBean> extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        Log.i("Size", Integer.toString(list.size()));
-            return itemListAdapter.getView(list.get(i), view, viewGroup);
+        return itemListAdapter.getView(list.get(i), view, viewGroup);
     }
 }

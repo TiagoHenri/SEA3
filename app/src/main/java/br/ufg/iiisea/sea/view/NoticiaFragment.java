@@ -76,7 +76,7 @@ public class NoticiaFragment extends Fragment implements NoticiaView, SwipeRefre
                     LayoutInflater inflater = LayoutInflater.from(getContext());
                     view = inflater.inflate(R.layout.noticia_item, viewGroup, false);
                 }
-                Log.i("Entrou", "itemListAdapter:evneto");
+//                Log.i("Entrou", "itemListAdapter:evneto");
                 TextView titulo = (TextView) view.findViewById(R.id.tvNoticiaItemTitulo);
                 TextView conteudo = (TextView) view.findViewById(R.id.tvNoticiaItemConteudo);
                 titulo.setText(item.getTitulo());
@@ -97,7 +97,7 @@ public class NoticiaFragment extends Fragment implements NoticiaView, SwipeRefre
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.i("Entrou", "onCreateView");
+//        Log.i("Entrou", "onCreateView");
         final View convertView = inflater.inflate(R.layout.fragment_noticia, container, false);
         swipeRefreshLayout = (SwipeRefreshLayout) convertView.findViewById(R.id.swipe_refresh_container);
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -106,15 +106,7 @@ public class NoticiaFragment extends Fragment implements NoticiaView, SwipeRefre
                 android.R.color.holo_blue_dark,
                 android.R.color.holo_orange_dark);
         lstNoticias = (ListView) convertView.findViewById(R.id.lstNoticias);
-
-//        TextView tvTeste = (TextView) convertView.findViewById(R.id.tvTeste);
-//        Evento e = (Evento) getArguments().getSerializable(EVENTO_ATUAL);
-//        String teste = (e != null) ? e.getNome() : "nao veio";
-//        tvTeste.setText(teste);
-
         lstNoticias.setAdapter(lstAdapter);
-
-
         return convertView;
     }
 
@@ -136,7 +128,7 @@ public class NoticiaFragment extends Fragment implements NoticiaView, SwipeRefre
 
     @Override
     public void removeNoticia(Noticia oldNoticia) {
-        Log.i("e", "removeNoticia:viewfragment");
+//        Log.i("e", "removeNoticia:viewfragment");
         lstAdapter.removeItem(oldNoticia);
     }
 

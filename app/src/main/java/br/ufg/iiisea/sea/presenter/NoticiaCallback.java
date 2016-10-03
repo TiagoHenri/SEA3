@@ -11,6 +11,7 @@ public interface NoticiaCallback {
 
     void noticiasNovas(List<Noticia> novasNoticias);
     void noticiasAtualizadas(List<Noticia> noticiasAtualizadas);
+    void noticiasDeletadas(List<Noticia> noticiasDeletadas);
     void naoExisteNoticiasNovas();
     void onError(String msg);
 }

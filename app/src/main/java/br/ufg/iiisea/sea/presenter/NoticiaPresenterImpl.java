@@ -59,6 +59,13 @@ public class NoticiaPresenterImpl extends PresenterAbstract implements NoticiaPr
     }
 
     @Override
+    public void noticiasDeletadas(List<Noticia> noticiasDeletadas) {
+        for(int i = 0; i < noticiasDeletadas.size();i++)
+            view.removeNoticia(noticiasDeletadas.get(i));
+        view.concluidoAtualizacao();
+    }
+
+    @Override
     public void naoExisteNoticiasNovas() {
         view.showNenhumaNoticiaMessage();
         view.concluidoAtualizacao();

@@ -1,5 +1,6 @@
 package br.ufg.iiisea.sea.bean;
 
+import android.support.annotation.NonNull;
 import br.ufg.iiisea.sea.utils.MutableBean;
 
 import java.io.Serializable;
@@ -31,6 +32,26 @@ public class Evento implements Serializable, MutableBean {
         this.descricao = descricao;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Evento evento = (Evento) o;
+
+        return this.id == evento.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + nome.hashCode();
+        result = 31 * result + descricao.hashCode();
+        result = 31 * result + dataInicio.hashCode();
+        result = 31 * result + dataFim.hashCode();
+        return result;
     }
 
     public long getId() {
@@ -71,5 +92,10 @@ public class Evento implements Serializable, MutableBean {
 
     public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
+    }
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        return 0;
     }
 }

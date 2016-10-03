@@ -31,6 +31,7 @@ public class ProgramacaoInteractorImpl implements ProgramacaoInteractor {
         this.programacaoAtual = programacaoAtual;
         this.paletrasListener = paletrasListener;
         this.palestraDAO = new PalestraDAO(context);
+//        palestraDAO.deleteAll();
     }
 
     @Override
@@ -50,6 +51,7 @@ public class ProgramacaoInteractorImpl implements ProgramacaoInteractor {
             Backendless.Data.of(Palestra.class).find(dataQuery, new AsyncCallback<BackendlessCollection<Palestra>>() {
                 @Override
                 public void handleResponse(BackendlessCollection<Palestra> collection) {
+                    Log.i("Backendless", "Fez busca por todas as palestras de um evento.");
                     Iterator<Palestra> iterator = collection.getCurrentPage().iterator();
                     while (iterator.hasNext()) {
                         Palestra next = iterator.next();
