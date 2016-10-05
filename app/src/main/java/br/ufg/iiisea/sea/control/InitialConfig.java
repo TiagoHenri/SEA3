@@ -2,6 +2,8 @@ package br.ufg.iiisea.sea.control;
 
 import android.app.Application;
 import android.content.Intent;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -15,6 +17,7 @@ import com.backendless.persistence.local.UserTokenStorageFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.jar.Manifest;
 
 import br.ufg.iiisea.sea.R;
 import br.ufg.iiisea.sea.bean.Noticia;
