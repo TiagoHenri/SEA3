@@ -14,6 +14,7 @@ public interface ProgramacaoView {
     void removePalestra(Palestra palestra);
     void showNenhumaPalestraDialog();
     void concluidoBusca();
+    void showToastMessage(String msg);
 //    void showDescricao(Palestra palestra);
 //    void hideDescricao(Palestra palestra);
 

@@ -149,4 +149,9 @@ public class NoticiaFragment extends Fragment implements NoticiaView, SwipeRefre
     public void concluidoAtualizacao() {
         swipeRefreshLayout.setRefreshing(false);
     }
+
+    @Override
+    public void showToastMessage(String msg){
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+    }
 }

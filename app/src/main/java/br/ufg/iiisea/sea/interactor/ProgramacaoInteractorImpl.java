@@ -106,7 +106,9 @@ public class ProgramacaoInteractorImpl implements ProgramacaoInteractor {
 
             @Override
             public void handleFault(BackendlessFault backendlessFault) {
-                paletrasListener.onNewPalestras(palestrasSalvas);
+                //paletrasListener.onNewPalestras(palestrasSalvas);
+                paletrasListener.onNewPalestras(null);
+                paletrasListener.onError("Erro ao atualizas as palestras");
                 Log.e("Erro no Bkl", "Erro ao buscar as palestras: "+backendlessFault.toString());
             }
         });

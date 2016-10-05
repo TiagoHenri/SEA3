@@ -168,6 +168,6 @@ public class Palestra implements MutableBean, Serializable {
         Palestra palestra = (Palestra) o;
         if (getHoraInicio() == null || ((Palestra) o).getHoraInicio() == null)
             return 0;
-        return -1*getHoraInicio().compareTo(palestra.getHoraInicio());
+        return getHoraInicio().compareTo(palestra.getHoraInicio());
     }
 }

@@ -10,7 +10,7 @@
     <application
             android:name=".control.InitialConfig"
             android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/logo_app"
             android:label="@string/app_name"
             android:supportsRtl="true"
             android:theme="@style/MyMaterialTheme">
@@ -43,10 +43,10 @@
         <activity
                 android:name=".view.PalestraActivity"
                 android:screenOrientation="portrait"
-                android:theme="@style/Transparent">
-        </activity>
-        <activity android:name=".view.CheckinActivity">
-        </activity>
+                android:theme="@style/Transparent"/>
+        <activity
+                android:name=".view.CheckinActivity"
+                android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

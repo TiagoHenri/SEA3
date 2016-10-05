@@ -46,8 +46,12 @@ public class NoticiaPresenterImpl extends PresenterAbstract implements NoticiaPr
 
     @Override
     public void noticiasNovas(List<Noticia> novasNoticias) {
-        view.addNoticia(novasNoticias);
-        view.concluidoAtualizacao();
+        if(novasNoticias == null){
+            view.concluidoAtualizacao();
+        } else {
+            view.addNoticia(novasNoticias);
+            view.concluidoAtualizacao();
+        }
     }
 
     @Override
@@ -73,6 +77,6 @@ public class NoticiaPresenterImpl extends PresenterAbstract implements NoticiaPr
 
     @Override
     public void onError(String msg) {
-
+        view.showToastMessage(msg);
     }
 }

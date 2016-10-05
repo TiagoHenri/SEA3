@@ -15,4 +15,5 @@ public interface NoticiaView extends ViewAbstract {
 
     void concluidoAtualizacao();
     void showNenhumaNoticiaMessage();
+    void showToastMessage(String msg);
 }

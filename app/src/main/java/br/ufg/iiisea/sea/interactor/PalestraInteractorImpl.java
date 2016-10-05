@@ -47,6 +47,7 @@ public class PalestraInteractorImpl implements PalestraInteractor {
 
             @Override
             public void handleFault(BackendlessFault backendlessFault) {
+                onCheckInFinishedObj.onError(1, "Erro ao fazer Checkin. Verifique conexão");
                 Log.e("Deu erro", "nao atualizou palestra para checkin.");
                 // tramento de erro
             }

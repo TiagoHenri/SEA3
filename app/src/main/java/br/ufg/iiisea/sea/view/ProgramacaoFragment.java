@@ -70,10 +70,11 @@ public class ProgramacaoFragment  extends Fragment implements ProgramacaoView, S
                     LayoutInflater inflater = LayoutInflater.from(getContext());
                     view = inflater.inflate(R.layout.palestra_item, viewGroup, false);
                 }
-                TextView tvPalestra = (TextView) view.findViewById(R.id.tvPalestraItemTitulo);
+                TextView tvPalestraTitulo = (TextView) view.findViewById(R.id.tvPalestraItemTitulo);
+                TextView tvPalestraHorario = (TextView) view.findViewById(R.id.tvPalestraItemHorario);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-                tvPalestra.setText(dateFormat.format(item.getHoraInicio()) + " - " + dateFormat.format(item.getHoraFim()) +
-                        "\n" + item.getNome());
+                tvPalestraHorario.setText(dateFormat.format(item.getHoraInicio()) + " - " + dateFormat.format(item.getHoraFim()));
+                tvPalestraTitulo.setText(item.getNome());
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -169,5 +170,10 @@ public class ProgramacaoFragment  extends Fragment implements ProgramacaoView, S
     @Override
     public void onRefresh() {
         presenter.atualizarPalestras();
+    }
+
+    @Override
+    public void showToastMessage(String msg){
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 }

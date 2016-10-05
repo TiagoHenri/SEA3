@@ -53,9 +53,13 @@ public class ProgramacaoPresenterImpl implements ProgramacaoPresenter, Programac
 
     @Override
     public void onNewPalestras(List<Palestra> palestrasNovas) {
-        if(!palestrasNovas.isEmpty())
-            view.addPalestra(palestrasNovas);
-        view.concluidoBusca();
+        if(palestrasNovas == null){
+            view.concluidoBusca();
+        } else {
+            if (!palestrasNovas.isEmpty())
+                view.addPalestra(palestrasNovas);
+            view.concluidoBusca();
+        }
     }
 
     @Override
@@ -85,6 +89,6 @@ public class ProgramacaoPresenterImpl implements ProgramacaoPresenter, Programac
 
     @Override
     public void onError(String msg) {
-
+        view.showToastMessage(msg);
     }
 }

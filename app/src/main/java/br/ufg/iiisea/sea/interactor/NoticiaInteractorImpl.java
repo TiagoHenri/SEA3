@@ -55,6 +55,8 @@ public class NoticiaInteractorImpl implements NoticiaInteractor {
     public void atualizarNoticias() {
         Log.i("entrou", "atualizarNoticias");
 
+
+
         final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss 'GMT'Z");
 //        String dateMinimo;
 //        Noticia last = noticiaDAO.getLastDateNoticia();
@@ -125,7 +127,9 @@ public class NoticiaInteractorImpl implements NoticiaInteractor {
 
             @Override
             public void handleFault(BackendlessFault backendlessFault) {
-                callback.noticiasNovas(noticiasSalva);
+                //callback.noticiasNovas(noticiasSalva);
+                callback.noticiasNovas(null);
+                callback.onError("Erro ao atualizar as notícias");
                 Log.e("Erro no Bkl", "Erro ao buscar as noticias: "+backendlessFault.toString());
             }
         });

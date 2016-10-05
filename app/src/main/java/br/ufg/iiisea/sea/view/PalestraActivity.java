@@ -47,8 +47,6 @@ public class PalestraActivity extends AppCompatActivity implements PalestraView 
         tvHoraFim = (TextView) findViewById(R.id.tvPalestraFim);
         btnCheckIn = (Button) findViewById(R.id.btnPalestraCheckin);
 
-
-
         Bundle extras = getIntent().getExtras();
         try{
             String nome = extras.getString(ProgramacaoFragment.NOME_PALESTRA);

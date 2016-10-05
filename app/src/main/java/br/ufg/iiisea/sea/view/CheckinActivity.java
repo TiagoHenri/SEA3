@@ -114,7 +114,8 @@ public class CheckinActivity extends AppCompatActivity implements CheckinView {
 
         cameraSource.stop();
         Toast.makeText(getApplicationContext(),
-                "Sucesso", Toast.LENGTH_SHORT).show();
+                "Check in realizado com sucesso", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override
@@ -122,6 +123,7 @@ public class CheckinActivity extends AppCompatActivity implements CheckinView {
 
         Toast.makeText(getApplicationContext(),
                 "QR-Code não é válido!", Toast.LENGTH_SHORT).show();
+        finish();
 
     }
 
@@ -131,6 +133,7 @@ public class CheckinActivity extends AppCompatActivity implements CheckinView {
         cameraSource.stop();
         Toast.makeText(getApplicationContext(),
                 "Usuário já fez check-in nessa palestra.", Toast.LENGTH_SHORT).show();
+        finish();
 
     }
 
