@@ -1,5 +1,6 @@
 package br.ufg.iiisea.sea.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +37,12 @@ public class ProgramacaoFragment  extends Fragment implements ProgramacaoView, S
     private ListAdapter<Palestra> lstAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
 
+    public static final String NOME_PALESTRA = "nome_palestra";
+    public static final String NOME_PALESTRANTES = "nome_palestrantes";
+    public static final String HORA_INICIO = "hora_inicio";
+    public static final String HORA_FIM = "hora_fim";
+    public static final String ID = "id";
+
     private Programacao programacaoAtual;
 
     public ProgramacaoFragment() {
@@ -56,19 +64,15 @@ public class ProgramacaoFragment  extends Fragment implements ProgramacaoView, S
 
         ItemListAdapter<Palestra> itemListAdapter = new ItemListAdapter<Palestra>() {
             @Override
-            public View getView(final Palestra item, View view, ViewGroup viewGroup) {
+            public View getView(Palestra item, View view, ViewGroup viewGroup) {
                 if(view == null) {
                     LayoutInflater inflater = LayoutInflater.from(getContext());
                     view = inflater.inflate(R.layout.palestra_item, viewGroup, false);
                 }
-                view.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                    }
-                });
                 TextView tvPalestra = (TextView) view.findViewById(R.id.tvPalestraItemTitulo);
-                SimpleDateFormat dateFormat = new SimpleDateFormat("HH");
-                tvPalestra.setText(item.getNome()+ " " + dateFormat.format(item.getHoraInicio())+ " até " + dateFormat.format(item.getHoraFim()));
+                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+                tvPalestra.setText(dateFormat.format(item.getHoraInicio()) + " - " + dateFormat.format(item.getHoraFim()) +
+                        "\n" + item.getNome());
                 return view;
             }
         };
@@ -91,6 +95,23 @@ public class ProgramacaoFragment  extends Fragment implements ProgramacaoView, S
         lstPalestra = (ListView) convertView.findViewById(R.id.lstPalestras);
         Log.i("E", "entrou");
         lstPalestra.setAdapter(lstAdapter);
+        lstPalestra.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(convertView.getContext(), PalestraActivity.class);
+
+                Palestra result = (Palestra) lstAdapter.getItem(position);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+
+                intent.putExtra(NOME_PALESTRA, result.getNome());
+                intent.putExtra(NOME_PALESTRANTES, result.getPalestrante());
+                intent.putExtra(HORA_INICIO, dateFormat.format(result.getHoraInicio()));
+                intent.putExtra(HORA_FIM, dateFormat.format(result.getHoraFim()));
+                intent.putExtra(ID, result.getId());
+
+                startActivity(intent);
+            }
+        });
         return convertView;
     }
 

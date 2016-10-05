@@ -27,6 +27,8 @@ public class PalestraActivity extends AppCompatActivity implements PalestraView 
     private TextView tvHoraFim = null;
     private Button btnCheckIn = null;
 
+    private int palestraId = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +47,25 @@ public class PalestraActivity extends AppCompatActivity implements PalestraView 
                 presenter.checkIn();
             }
         });
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            try{
+                String nome = extras.getString(ProgramacaoFragment.NOME_PALESTRA);
+                String palestrantes = extras.getString(ProgramacaoFragment.NOME_PALESTRANTES);
+                String horaInicio = extras.getString(ProgramacaoFragment.HORA_INICIO);
+                String horaFim = extras.getString(ProgramacaoFragment.HORA_FIM);
+                int id = extras.getInt(ProgramacaoFragment.ID);
+
+                tvNome.setText(nome);
+                tvPalestrantes.setText(palestrantes);
+                tvHoraInicio.setText(horaInicio);
+                tvHoraFim.setText(horaFim);
+                this.palestraId = id;
+            }catch (Exception e){
+
+            }
+        }
     }
 
     @Override

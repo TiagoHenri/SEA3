@@ -31,6 +31,7 @@ public class ProgramacaoInteractorImpl implements ProgramacaoInteractor {
         this.programacaoAtual = programacaoAtual;
         this.paletrasListener = paletrasListener;
         this.palestraDAO = new PalestraDAO(context);
+//        palestraDAO.deleteAll();
     }
 
     @Override
@@ -64,11 +65,13 @@ public class ProgramacaoInteractorImpl implements ProgramacaoInteractor {
             @Override
             public void handleResponse(BackendlessCollection<Palestra> collection) {
                 Log.i("Backendless", "Fez busca por todas as palestras de uma programacao.");
-                List<Palestra> palestrasBackendless = collection.getData();
+                List<Palestra> palestrasBackendless = collection.getCurrentPage();
                 Log.i("mapa", "Tamanho" + mapaPalestrasSalvas.size());
                 Log.i("bk", "Tamanho" + palestrasBackendless.size());
                 for(Iterator<Palestra> iterator = palestrasBackendless.iterator(); iterator.hasNext();) {
                     Palestra next = iterator.next();
+                    //Log.i("mapa", mapaPalestrasSalvas.get(next.getId()).toString());
+                    Log.i("bk", next.toString());
                     if(mapaPalestrasSalvas.containsKey(next.getId())) {
                         if(!mapaPalestrasSalvas.get(next.getId()).equals(next)) {
                             palestraDAO.edit(next);
