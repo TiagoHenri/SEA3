@@ -22,6 +22,7 @@ import java.io.IOException;
 
 public class CheckinActivity extends AppCompatActivity implements CheckinView {
 
+    public static final String PALESTRA_ATUAL = "palestra_atual";
     private SurfaceView cameraView;
     private BarcodeDetector barcodeDetector;
     private CameraSource cameraSource;
@@ -50,52 +51,52 @@ public class CheckinActivity extends AppCompatActivity implements CheckinView {
             }
         });
 
-//        cameraView = (SurfaceView) findViewById(R.id.camera_view);
-//        barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
-//        cameraSource = new CameraSource.Builder(this, barcodeDetector).setRequestedPreviewSize(640,480).build();
-//
-//        cameraView.getHolder().addCallback(new SurfaceHolder.Callback() {
-//            @Override
-//            public void surfaceCreated(SurfaceHolder surfaceHolder) {
-//                try {
-//                    cameraSource.start(cameraView.getHolder());
-//                } catch (IOException ie) {
-//                    Log.e("CAMERA SOURCE", ie.getMessage());
-//                }
-//            }
-//
-//            @Override
-//            public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-//                cameraSource.stop();
-//            }
-//        });
-//
-//        barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
-//            @Override
-//            public void release() {
-//
-//            }
-//
-//            @Override
-//            public void receiveDetections(Detector.Detections<Barcode> detections) {
-//                final SparseArray<Barcode> barcodes = detections.getDetectedItems();
-//
-//                if (barcodes.size() != 0) {
-////                    barcodeInfo.post(new Runnable() {    // Use the post method of the TextView
-////                        public void run() {
-////                            barcodeInfo.setText(    // Update the TextView
-////                                    barcodes.valueAt(0).displayValue
-////                            );
-////                        }
-////                    });
-//                }
-//            }
-//        });
+        cameraView = (SurfaceView) findViewById(R.id.camera_view);
+        barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
+        cameraSource = new CameraSource.Builder(this, barcodeDetector).setRequestedPreviewSize(640,480).build();
+
+        cameraView.getHolder().addCallback(new SurfaceHolder.Callback() {
+            @Override
+            public void surfaceCreated(SurfaceHolder surfaceHolder) {
+                try {
+                    cameraSource.start(cameraView.getHolder());
+                } catch (IOException ie) {
+                    Log.e("CAMERA SOURCE", ie.getMessage());
+                }
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+                cameraSource.stop();
+            }
+        });
+
+        barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
+            @Override
+            public void release() {
+
+            }
+
+            @Override
+            public void receiveDetections(Detector.Detections<Barcode> detections) {
+                final SparseArray<Barcode> barcodes = detections.getDetectedItems();
+
+                if (barcodes.size() != 0) {
+//                    barcodeInfo.post(new Runnable() {    // Use the post method of the TextView
+//                        public void run() {
+//                            barcodeInfo.setText(    // Update the TextView
+//                                    barcodes.valueAt(0).displayValue
+//                            );
+//                        }
+//                    });
+                }
+            }
+        });
     }
 
     @Override

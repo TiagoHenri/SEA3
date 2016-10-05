@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import br.ufg.iiisea.sea.utils.MutableBean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,11 +12,7 @@ import java.util.List;
 /**
  * Created by fellipe on 14/09/16.
  */
-public class Palestra implements MutableBean {
-    @Override
-    public int compareTo(@NonNull Object o) {
-        return 0;
-    }
+public class Palestra implements MutableBean, Serializable {
 
     public enum Tipo {
         PALESTRA(1, "palestra"),
@@ -162,5 +159,15 @@ public class Palestra implements MutableBean {
             return false;
         return codigoQrCode != null ? codigoQrCode.equals(palestra.codigoQrCode) : palestra.codigoQrCode == null;
 
+    }
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        if(o == null)
+            return 0;
+        Palestra palestra = (Palestra) o;
+        if (getHoraInicio() == null || ((Palestra) o).getHoraInicio() == null)
+            return 0;
+        return -1*getHoraInicio().compareTo(palestra.getHoraInicio());
     }
 }

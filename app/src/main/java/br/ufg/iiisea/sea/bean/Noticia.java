@@ -108,4 +108,5 @@ public class Noticia implements ListableBean, MutableBean {
             return 0;
         return -1*getData().compareTo(noticia.getData());
     }
+
 }
