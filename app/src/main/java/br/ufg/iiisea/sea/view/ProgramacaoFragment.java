@@ -41,6 +41,7 @@ public class ProgramacaoFragment  extends Fragment implements ProgramacaoView, S
     public static final String NOME_PALESTRANTES = "nome_palestrantes";
     public static final String HORA_INICIO = "hora_inicio";
     public static final String HORA_FIM = "hora_fim";
+    public static final String TIPO = "tipo";
     public static final String ID = "id";
 
     private Programacao programacaoAtual;
@@ -107,6 +108,7 @@ public class ProgramacaoFragment  extends Fragment implements ProgramacaoView, S
                 intent.putExtra(NOME_PALESTRANTES, result.getPalestrante());
                 intent.putExtra(HORA_INICIO, dateFormat.format(result.getHoraInicio()));
                 intent.putExtra(HORA_FIM, dateFormat.format(result.getHoraFim()));
+                intent.putExtra(TIPO, result.getTipo().toString());
                 intent.putExtra(ID, result.getId());
 
                 startActivity(intent);

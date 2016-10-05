@@ -1,5 +1,6 @@
 package br.ufg.iiisea.sea.presenter;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import br.ufg.iiisea.sea.R;
@@ -29,10 +30,7 @@ public class PalestraPresenterImpl extends PresenterAbstract implements Palestra
 
     @Override
     public void checkIn() {
-        if(view != null) {
-            view.showProgressCheckIn();
-        }
-        interactor.checkIn(this);
+        view.chamaCheckinActivity();
     }
 
     @Override

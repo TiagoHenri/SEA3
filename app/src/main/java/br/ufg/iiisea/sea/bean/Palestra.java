@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import br.ufg.iiisea.sea.utils.MutableBean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 /**
  * Created by fellipe on 14/09/16.
  */
-public class Palestra implements MutableBean {
+public class Palestra implements MutableBean, Serializable {
 
     public enum Tipo {
         PALESTRA(1, "palestra"),
@@ -165,8 +166,8 @@ public class Palestra implements MutableBean {
         if(o == null)
             return 0;
         Palestra palestra = (Palestra) o;
-        if (getHoraInicio() == null || palestra.getHoraInicio() == null)
+        if (getHoraInicio() == null || ((Palestra) o).getHoraInicio() == null)
             return 0;
-        return getHoraInicio().compareTo(palestra.getHoraInicio());
+        return -1*getHoraInicio().compareTo(palestra.getHoraInicio());
     }
 }

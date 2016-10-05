@@ -1,5 +1,6 @@
 package br.ufg.iiisea.sea.view;
 
+import br.ufg.iiisea.sea.bean.Palestra;
 import br.ufg.iiisea.sea.utils.ViewAbstract;
 
 /**
@@ -30,4 +31,6 @@ public interface PalestraView extends ViewAbstract {
      * @param msg
      */
     void showToastByString(String msg);
+
+    void chamaCheckinActivity();
 }

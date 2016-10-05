@@ -46,7 +46,6 @@
                 android:theme="@style/Transparent">
         </activity>
         <activity android:name=".view.CheckinActivity">
-
         </activity>
     </application>
 

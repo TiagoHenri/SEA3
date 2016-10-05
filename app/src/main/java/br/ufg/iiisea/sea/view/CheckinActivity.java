@@ -22,6 +22,7 @@ import java.io.IOException;
 
 public class CheckinActivity extends AppCompatActivity implements CheckinView {
 
+    public static final String PALESTRA_ATUAL = "palestra_atual";
     private SurfaceView cameraView;
     private BarcodeDetector barcodeDetector;
     private CameraSource cameraSource;
