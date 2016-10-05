@@ -86,7 +86,7 @@ public class NoticiaInteractorImpl implements NoticiaInteractor {
             @Override
             public void handleResponse(BackendlessCollection<Noticia> news) {
                 Log.i("Backendless", "Fez busca por todas as noticias de um evento.");
-                List<Noticia> noticiasNoBackendless = news.getCurrentPage();
+                List<Noticia> noticiasNoBackendless = news.getData();
                 for(Iterator<Noticia> iterator = noticiasNoBackendless.iterator(); iterator.hasNext();) {
                     Noticia next = iterator.next();
                     if(mapaNoticiasSalva.containsKey(next.getId())) {

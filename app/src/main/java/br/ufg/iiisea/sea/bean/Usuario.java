@@ -11,11 +11,16 @@ import java.util.ArrayList;
 public class Usuario implements MutableBean {
 
     private long id;
+    private String objectID;
     private String nome;
     private String email;
     private String senha;
 
     public Usuario() {
+    }
+
+    public Usuario(String objectID) {
+        this.objectID = objectID;
     }
 
     public Usuario(long id, String nome, String email, String senha) {
@@ -60,6 +65,14 @@ public class Usuario implements MutableBean {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getObjectID() {
+        return objectID;
+    }
+
+    public void setObjectID(String objectID) {
+        this.objectID = objectID;
     }
 
     @Override

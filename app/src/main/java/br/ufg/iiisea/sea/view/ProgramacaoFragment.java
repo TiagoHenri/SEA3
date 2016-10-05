@@ -56,12 +56,17 @@ public class ProgramacaoFragment  extends Fragment implements ProgramacaoView, S
 
         ItemListAdapter<Palestra> itemListAdapter = new ItemListAdapter<Palestra>() {
             @Override
-            public View getView(Palestra item, View view, ViewGroup viewGroup) {
+            public View getView(final Palestra item, View view, ViewGroup viewGroup) {
                 if(view == null) {
                     LayoutInflater inflater = LayoutInflater.from(getContext());
                     view = inflater.inflate(R.layout.palestra_item, viewGroup, false);
                 }
-                TextView tvPalestra = (TextView) view.findViewById(R.id.tvPalestra);
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                    }
+                });
+                TextView tvPalestra = (TextView) view.findViewById(R.id.tvPalestraItemTitulo);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("HH");
                 tvPalestra.setText(item.getNome()+ " " + dateFormat.format(item.getHoraInicio())+ " até " + dateFormat.format(item.getHoraFim()));
                 return view;

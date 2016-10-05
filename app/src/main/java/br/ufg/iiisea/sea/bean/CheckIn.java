@@ -15,6 +15,45 @@ public class CheckIn {
     @Deprecated
     private Date horaSaida;
 
+    public CheckIn() {
+    }
 
+    public CheckIn(Usuario usuario, Palestra palestra, Date horaEntrada, Date horaSaida) {
+        this.usuario = usuario;
+        this.palestra = palestra;
+        this.horaEntrada = horaEntrada;
+        this.horaSaida = horaSaida;
+    }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Palestra getPalestra() {
+        return palestra;
+    }
+
+    public void setPalestra(Palestra palestra) {
+        this.palestra = palestra;
+    }
+
+    public Date getHoraEntrada() {
+        return horaEntrada;
+    }
+
+    public void setHoraEntrada(Date horaEntrada) {
+        this.horaEntrada = horaEntrada;
+    }
+
+    public Date getHoraSaida() {
+        return horaSaida;
+    }
+
+    public void setHoraSaida(Date horaSaida) {
+        this.horaSaida = horaSaida;
+    }
 }
