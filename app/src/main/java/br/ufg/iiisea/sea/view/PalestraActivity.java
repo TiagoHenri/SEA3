@@ -32,7 +32,7 @@ public class PalestraActivity extends AppCompatActivity implements PalestraView 
     private TextView tvHoraFim = null;
     private Button btnCheckIn = null;
 
-    private int palestraId = 0;
+    private long     palestraId = 0;
 
     public PalestraActivity() {}
 
@@ -40,7 +40,6 @@ public class PalestraActivity extends AppCompatActivity implements PalestraView 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_palestra);
-        presenter = new PalestraPresenterImpl(this);
 
         tvNome = (TextView) findViewById(R.id.tvPalestraNome);
         tvPalestrantes = (TextView) findViewById(R.id.tvPalestraPalestrantes);
@@ -48,42 +47,43 @@ public class PalestraActivity extends AppCompatActivity implements PalestraView 
         tvHoraFim = (TextView) findViewById(R.id.tvPalestraFim);
         btnCheckIn = (Button) findViewById(R.id.btnPalestraCheckin);
 
-        btnCheckIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.checkIn();
-            }
-        });
+
 
         Bundle extras = getIntent().getExtras();
-        if(extras != null){
-            try{
-                String nome = extras.getString(ProgramacaoFragment.NOME_PALESTRA);
-                String palestrantes = extras.getString(ProgramacaoFragment.NOME_PALESTRANTES);
-                String horaInicio = extras.getString(ProgramacaoFragment.HORA_INICIO);
-                String horaFim = extras.getString(ProgramacaoFragment.HORA_FIM);
-                Palestra.Tipo tipo = Palestra.Tipo.valueOf(extras.getString(ProgramacaoFragment.TIPO));
-                int id = extras.getInt(ProgramacaoFragment.ID);
+        try{
+            String nome = extras.getString(ProgramacaoFragment.NOME_PALESTRA);
+            String palestrantes = extras.getString(ProgramacaoFragment.NOME_PALESTRANTES);
+            String horaInicio = extras.getString(ProgramacaoFragment.HORA_INICIO);
+            String horaFim = extras.getString(ProgramacaoFragment.HORA_FIM);
+            Palestra.Tipo tipo = Palestra.Tipo.valueOf(extras.getString(ProgramacaoFragment.TIPO));
+            long id = extras.getLong(ProgramacaoFragment.ID);
 
-                palestraAtual = new Palestra();
-                palestraAtual.setId(id);
-                palestraAtual.setNome(nome);
+            palestraAtual = new Palestra();
+            palestraAtual.setId(id);
+            palestraAtual.setNome(nome);
 
-                if(tipo.equals(Palestra.Tipo.OUTROS)) {
-                    Log.i("i", "igual");
-                    btnCheckIn.setEnabled(false);
-                    btnCheckIn.setVisibility(View.GONE);
-                }
-
-                tvNome.setText(nome);
-                tvPalestrantes.setText(palestrantes);
-                tvHoraInicio.setText(horaInicio);
-                tvHoraFim.setText(horaFim);
-                this.palestraId = id;
-            }catch (NullPointerException e){
-
+            if(tipo.equals(Palestra.Tipo.OUTROS)) {
+                Log.i("i", "igual");
+                btnCheckIn.setEnabled(false);
+                btnCheckIn.setVisibility(View.GONE);
             }
+
+            tvNome.setText(nome);
+            tvPalestrantes.setText(palestrantes);
+            tvHoraInicio.setText(horaInicio);
+            tvHoraFim.setText(horaFim);
+            this.palestraId = id;
+            presenter = new PalestraPresenterImpl(this, palestraAtual);
+            btnCheckIn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    presenter.checkIn();
+                }
+            });
+        }catch (NullPointerException e){
+
         }
+
     }
 
     @Override
@@ -115,12 +115,14 @@ public class PalestraActivity extends AppCompatActivity implements PalestraView 
     }
 
     @Override
-    public void chamaCheckinActivity() {
+    public void chamaCheckinActivity(Palestra atualizada) {
+
+        Log.i("a", atualizada.getNome());
 
         Intent myIntent = new Intent(this, CheckinActivity.class);
         Bundle b = new Bundle();
-        b.putSerializable(CheckinActivity.PALESTRA_ATUAL, palestraAtual);
-        myIntent.putExtra("bundle", b);
+        b.putSerializable(CheckinActivity.PALESTRA_ATUAL, atualizada);
+            myIntent.putExtra("bundle", b);
         startActivity(myIntent);
     }
 }

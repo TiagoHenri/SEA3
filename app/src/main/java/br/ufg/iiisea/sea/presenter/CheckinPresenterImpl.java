@@ -1,7 +1,7 @@
 package br.ufg.iiisea.sea.presenter;
 
 import android.util.Log;
-import br.ufg.iiisea.sea.bean.CheckIn;
+import br.ufg.iiisea.sea.bean.Checkin;
 import br.ufg.iiisea.sea.bean.Palestra;
 import br.ufg.iiisea.sea.bean.Usuario;
 import br.ufg.iiisea.sea.control.InitialConfig;
@@ -32,34 +32,30 @@ public class CheckinPresenterImpl implements CheckinPresenter {
     }
 
 
-    private void salvaCheckinNoBkl(CheckIn novoCheckin) {
-        Backendless.Persistence.of(CheckIn.class).save(novoCheckin, new AsyncCallback<CheckIn>() {
+    private void salvaCheckinNoBkl(Checkin novoCheckin) {
+        Backendless.Persistence.of(Checkin.class).save(novoCheckin, new AsyncCallback<Checkin>() {
             @Override
-            public void handleResponse(CheckIn checkIn) {
+            public void handleResponse(Checkin checkIn) {
+                view.checkinSucess();
                 Log.i("sucess", "salvou");
             }
 
             @Override
             public void handleFault(BackendlessFault backendlessFault) {
-                Log.e("erro", "nao salvou"+ backendlessFault.toString());
+                view.onError("Não foi possível completar a aquisição.");
+                Log.e("erro2", "nao salvou"+ backendlessFault.toString());
             }
         });
     }
 
     private void tentaChecarBackendlessUltimoCheckin() {
         Log.i("d", InitialConfig.user.getEmail());
-        Backendless.Data.mapTableToClass("checkin", CheckIn.class);
+        Backendless.Data.mapTableToClass("Checkin", Checkin.class);
         BackendlessDataQuery dataQuery = new BackendlessDataQuery();
-        StringBuilder whereClause = new StringBuilder();
-        whereClause.append( "usuario" );
-        whereClause.append( ".objectId='" ).append( InitialConfig.user.getObjectId()).append( "'" );
-        whereClause.append( " and " );
-        whereClause.append( "palestra.id = '"+palestraAtual.getId()+"'" );
-        dataQuery.setWhereClause( whereClause.toString() );
+        String query = "usuarioId = '" + InitialConfig.user.getEmail() + "' AND palestraId = " + palestraAtual.getId();
+        dataQuery.setWhereClause( query );
 
         QueryOptions queryOptions = new QueryOptions();
-        queryOptions.addRelated("Users");
-        queryOptions.addRelated( "Palestra" );
         //queryOptions.addRelated("palestrante");
 //        queryOptions.setPageSize(20);
         dataQuery.setQueryOptions( queryOptions );
@@ -68,12 +64,12 @@ public class CheckinPresenterImpl implements CheckinPresenter {
             @Override
             public void handleResponse(BackendlessCollection<Map> collection) {
                 if(collection.getData().isEmpty()) {
-                    CheckIn novoCheckin = new CheckIn();
-                    novoCheckin.setUsuario(new Usuario(InitialConfig.user.getObjectId()));
-                    novoCheckin.setPalestra(palestraAtual);
+                    Checkin novoCheckin = new Checkin();
+                    //novoCheckin.setUsuario(new Usuario(InitialConfig.user.getObjectId()));
+                    novoCheckin.setUsuarioId(InitialConfig.user.getEmail());
+                    novoCheckin.setPalestraId((int) palestraAtual.getId());
                     novoCheckin.setHoraEntrada(new Date());
                     salvaCheckinNoBkl(novoCheckin);
-                    view.checkinSucess();
                 } else {
                     view.usuarioChecked();
                 }
@@ -81,7 +77,7 @@ public class CheckinPresenterImpl implements CheckinPresenter {
 
             @Override
             public void handleFault(BackendlessFault backendlessFault) {
-                Log.e("Erro", backendlessFault.toString());
+                Log.e("Erro1", backendlessFault.toString());
             }
         });
     }
@@ -93,9 +89,11 @@ public class CheckinPresenterImpl implements CheckinPresenter {
             if(palestraAtual.getCodigoQrCode().equals(code)) {
                 tentaChecarBackendlessUltimoCheckin();
             } else {
+                Log.i("codigo 1", code + "-"+palestraAtual.getCodigoQrCode()+"-"+palestraAtual.getNome());
                 view.qrCodeNaoValido();
             }
         } else {
+            Log.i("codigo 2", code);
             view.qrCodeNaoValido();
         }
     }

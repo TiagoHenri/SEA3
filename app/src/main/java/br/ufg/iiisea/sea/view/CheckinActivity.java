@@ -29,27 +29,22 @@ public class CheckinActivity extends AppCompatActivity implements CheckinView {
     private CheckinPresenter presenter;
     private Palestra palestraAtual;
 
-    public CheckinActivity newInstance() {
-
-        return new CheckinActivity();
-    }
+    private String codeFixo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkin);
 
-        Palestra p = new Palestra();
-        p.setId(1);
-        p.setCodigoQrCode("SEA3:1");
-        presenter = new CheckinPresenterImpl(p,this);
-        Button btTeste = (Button) findViewById(R.id.btTeste);
-        btTeste.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.tentaCheckin("SEA3:1");
-            }
-        });
+
+        Bundle bundle = getIntent().getBundleExtra("bundle");
+
+        palestraAtual = (Palestra) bundle.getSerializable(PALESTRA_ATUAL);
+        Log.i("PalestraAtual", palestraAtual.getNome() + " - " + palestraAtual.getCodigoQrCode());
+        if(palestraAtual == null)
+            Log.i("eh", "deu ruim");
+
+        presenter = new CheckinPresenterImpl(palestraAtual,this);
 
         cameraView = (SurfaceView) findViewById(R.id.camera_view);
         barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
@@ -87,6 +82,18 @@ public class CheckinActivity extends AppCompatActivity implements CheckinView {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
 
                 if (barcodes.size() != 0) {
+
+
+                    cameraView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            String codeDetectado = barcodes.valueAt(0).displayValue;
+                            if(!codeDetectado.equals(codeFixo)) {
+                                codeFixo = codeDetectado;
+                                presenter.tentaCheckin(codeDetectado);
+                            }
+                        }
+                    });
 //                    barcodeInfo.post(new Runnable() {    // Use the post method of the TextView
 //                        public void run() {
 //                            barcodeInfo.setText(    // Update the TextView
@@ -103,6 +110,7 @@ public class CheckinActivity extends AppCompatActivity implements CheckinView {
     public void checkinSucess() {
         //Aqui vc decide sobre o que fazer na tela com o checkin sucesso
 
+        cameraSource.stop();
         Toast.makeText(getApplicationContext(),
                 "Sucesso", Toast.LENGTH_SHORT).show();
     }
@@ -118,6 +126,7 @@ public class CheckinActivity extends AppCompatActivity implements CheckinView {
     @Override
     public void usuarioChecked() {
 
+        cameraSource.stop();
         Toast.makeText(getApplicationContext(),
                 "Usuário já fez check-in nessa palestra.", Toast.LENGTH_SHORT).show();
 

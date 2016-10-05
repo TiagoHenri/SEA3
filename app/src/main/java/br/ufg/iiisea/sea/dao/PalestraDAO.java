@@ -91,7 +91,7 @@ public class PalestraDAO extends AbstractDAO<Palestra> {
     @Override
     public ContentValues toContentValues(Palestra entity) {
         ContentValues values = new ContentValues();
-        values.put(DBEntries.PalestraEntry.COLUMN_PROG_ID, entity.getId());
+        values.put(DBEntries.PalestraEntry.COLUMN_ID, entity.getId());
         values.put(DBEntries.PalestraEntry.COLUMN_NAME_NOME, entity.getNome());
         values.put(DBEntries.PalestraEntry.COLUMN_NAME_DESCRICAO, entity.getDescricao());
         values.put(DBEntries.PalestraEntry.COLUMN_NAME_LUGAR, entity.getLugar());
