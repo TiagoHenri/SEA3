@@ -114,6 +114,8 @@ public class PalestraDAO extends AbstractDAO<Palestra> {
         String horaInicio = dateFormat.format(entity.getHoraInicio());
         values.put(DBEntries.PalestraEntry.COLUMN_NAME_HORA_FIM, horaFim);
         values.put(DBEntries.PalestraEntry.COLUMN_NAME_HORA_INICIO, horaInicio);
+        values.put(DBEntries.PalestraEntry.COLUMN_NAME_CODIGOQRCODE, entity.getCodigoQrCode());
+        values.put(DBEntries.PalestraEntry.COLUMN_NAME_PALESTRANTE, entity.getPalestrante());
 
         return values;
     }
