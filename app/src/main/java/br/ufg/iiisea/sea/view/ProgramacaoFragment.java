@@ -61,9 +61,9 @@ public class ProgramacaoFragment  extends Fragment implements ProgramacaoView, S
                     LayoutInflater inflater = LayoutInflater.from(getContext());
                     view = inflater.inflate(R.layout.palestra_item, viewGroup, false);
                 }
-                TextView tvPalestra = (TextView) view.findViewById(R.id.tvPalestra);
-                SimpleDateFormat dateFormat = new SimpleDateFormat("HH");
-                tvPalestra.setText(item.getNome()+ " " + dateFormat.format(item.getHoraInicio())+ " até " + dateFormat.format(item.getHoraFim()));
+                TextView tvPalestra = (TextView) view.findViewById(R.id.tvPalestraItemTitulo);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+                tvPalestra.setText(dateFormat.format(item.getHoraInicio()) + " - " + dateFormat.format(item.getHoraFim()) + "\n" + item.getNome());
                 return view;
             }
         };
@@ -86,6 +86,7 @@ public class ProgramacaoFragment  extends Fragment implements ProgramacaoView, S
         lstPalestra = (ListView) convertView.findViewById(R.id.lstPalestras);
         Log.i("E", "entrou");
         lstPalestra.setAdapter(lstAdapter);
+      //  lstPalestra.s
         return convertView;
     }
 
