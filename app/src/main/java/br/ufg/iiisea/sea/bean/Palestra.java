@@ -12,10 +12,6 @@ import java.util.List;
  * Created by fellipe on 14/09/16.
  */
 public class Palestra implements MutableBean {
-    @Override
-    public int compareTo(@NonNull Object o) {
-        return 0;
-    }
 
     public enum Tipo {
         PALESTRA(1, "palestra"),
@@ -162,5 +158,15 @@ public class Palestra implements MutableBean {
             return false;
         return codigoQrCode != null ? codigoQrCode.equals(palestra.codigoQrCode) : palestra.codigoQrCode == null;
 
+    }
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        if(o == null)
+            return 0;
+        Palestra palestra = (Palestra) o;
+        if (getHoraInicio() == null || palestra.getHoraInicio() == null)
+            return 0;
+        return getHoraInicio().compareTo(palestra.getHoraInicio());
     }
 }
