@@ -70,7 +70,7 @@ public class ProgramacaoInteractorImpl implements ProgramacaoInteractor {
                 Log.i("bk", "Tamanho" + palestrasBackendless.size());
                 for(Iterator<Palestra> iterator = palestrasBackendless.iterator(); iterator.hasNext();) {
                     Palestra next = iterator.next();
-                    Log.i("mapa", mapaPalestrasSalvas.get(next.getId()).toString());
+                    //Log.i("mapa", mapaPalestrasSalvas.get(next.getId()).toString());
                     Log.i("bk", next.toString());
                     if(mapaPalestrasSalvas.containsKey(next.getId())) {
                         if(!mapaPalestrasSalvas.get(next.getId()).equals(next)) {
