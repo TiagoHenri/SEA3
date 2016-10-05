@@ -10,4 +10,5 @@ import java.util.List;
 public interface ProgramacaoInteractor {
     List<Palestra> buscaPalestraInicio();
     void atualizaPalestras();
+    void atualizaPalestras1();
 }

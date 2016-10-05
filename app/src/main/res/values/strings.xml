@@ -25,7 +25,7 @@
     <string name="msgEsqueciSenha1">Insira seu email e lhe enviaremos um</string>
     <string name="msgEsqueciSenha2">link para redefinir sua senha</string>
     <string name="msgLinkEnviado">Link de redefinição enviado para seu email</string>
-    <string name="msgBemVindo">Bem vindo(a) de volta, </string>
+    <string name="msgBemVindo">Bem vindo(a) de volta,</string>
 
     <string name="erroCampoVazio">Existem campos obrigatórios vazios</string>
     <string name="erroTamanhoSenha">A senha deve ter ao menos 6 dígitos</string>

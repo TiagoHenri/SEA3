@@ -32,8 +32,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(DBEntries.NoticiaEntry.SQL_CREATE_ENTRIES);
         db.execSQL(DBEntries.ProgramacaoEntry.SQL_CREATE_ENTRIES);
         db.execSQL(DBEntries.PalestraEntry.SQL_CREATE_ENTRIES);
-        db.execSQL(DBEntries.PalestranteEntry.SQL_CREATE_ENTRIES);
-        db.execSQL(DBEntries.PalestraPalestranteEntry.SQL_CREATE_ENTRIES);
     }
 
     @Override
@@ -44,8 +42,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             db.execSQL(DBEntries.NoticiaEntry.SQL_DELETE_ENTRIES);
             db.execSQL(DBEntries.ProgramacaoEntry.SQL_DELETE_ENTRIES);
             db.execSQL(DBEntries.PalestraEntry.SQL_DELETE_ENTRIES);
-            db.execSQL(DBEntries.PalestranteEntry.SQL_DELETE_ENTRIES);
-            db.execSQL(DBEntries.PalestraPalestranteEntry.SQL_DELETE_ENTRIES);
         } catch (SQLiteException e) {
             Log.e("DataBaseHelper", "onUpgrade: alguma tabela nao é possivel deletar: "+e.toString());
         }

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import br.ufg.iiisea.sea.R;
 import br.ufg.iiisea.sea.bean.Evento;
 import br.ufg.iiisea.sea.bean.Palestra;
+import br.ufg.iiisea.sea.bean.Palestrante;
 import br.ufg.iiisea.sea.bean.Programacao;
 import br.ufg.iiisea.sea.presenter.ProgramacaoPresenter;
 import br.ufg.iiisea.sea.presenter.ProgramacaoPresenterImpl;
@@ -61,9 +62,12 @@ public class ProgramacaoFragment  extends Fragment implements ProgramacaoView, S
                     LayoutInflater inflater = LayoutInflater.from(getContext());
                     view = inflater.inflate(R.layout.palestra_item, viewGroup, false);
                 }
-                TextView tvPalestra = (TextView) view.findViewById(R.id.tvPalestra);
-                SimpleDateFormat dateFormat = new SimpleDateFormat("HH");
-                tvPalestra.setText(item.getNome()+ " " + dateFormat.format(item.getHoraInicio())+ " até " + dateFormat.format(item.getHoraFim()));
+                TextView tvPalestra = (TextView) view.findViewById(R.id.tvPalestraItemTitulo);
+                String nn = "";
+                if(item.getPalestrantes() != null)
+                    for(Iterator<Palestrante> iterator = item.getPalestrantes().iterator(); iterator.hasNext();)
+                        nn += iterator.next().getNome() + " ";
+                tvPalestra.setText(item.getNome() + nn);
                 return view;
             }
         };

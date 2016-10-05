@@ -11,7 +11,10 @@ public class CheckIn {
 
     private Usuario usuario;
     private Palestra palestra;
-    private Date hora_entrada;
+    private Date horaEntrada;
     @Deprecated
-    private Date hora_saida;
+    private Date horaSaida;
+
+
+
 }

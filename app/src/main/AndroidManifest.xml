@@ -1,48 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.ufg.iiisea.sea">
-
-    <uses-permission android:name="android.permission.INTERNET" />
+          package="br.ufg.iiisea.sea">
+    <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name=".control.InitialConfig"
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/MyMaterialTheme">
+            android:name=".control.InitialConfig"
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:supportsRtl="true"
+            android:theme="@style/MyMaterialTheme">
         <activity
-            android:name=".view.Inicio"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+                android:name=".view.Inicio"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.EntrarActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+                android:name=".view.EntrarActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".view.RegistrarActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+                android:name=".view.RegistrarActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".view.EsqueciSenhaActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+                android:name=".view.EsqueciSenhaActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".view.HomeActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+                android:name=".view.HomeActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".view.PalestraActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Transparent">
+                android:name=".view.PalestraActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/Transparent">
         </activity>
-
+        <activity android:name=".view.CheckinActivity">
+        </activity>
     </application>
 
 </manifest>

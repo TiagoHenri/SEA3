@@ -58,6 +58,9 @@ public class PalestraDAO extends AbstractDAO<Palestra> {
         entity.setLugar(contentValues.getAsString(DBEntries.PalestraEntry.COLUMN_NAME_LUGAR));
         entity.setNome(contentValues.getAsString(DBEntries.PalestraEntry.COLUMN_NAME_NOME));
 
+        entity.setPalestrante(contentValues.getAsString(DBEntries.PalestraEntry.COLUMN_NAME_PALESTRANTE));
+        entity.setCodigoQrCode(contentValues.getAsString(DBEntries.PalestraEntry.COLUMN_NAME_CODIGOQRCODE));
+
         Programacao programacao = new Programacao();
         programacao.setId(contentValues.getAsInteger(DBEntries.PalestraEntry.COLUMN_PROG_ID));
         entity.setProgramacao(programacao);

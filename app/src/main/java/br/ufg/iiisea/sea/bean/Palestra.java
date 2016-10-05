@@ -39,13 +39,15 @@ public class Palestra implements MutableBean {
     private Date horaInicio;
     private Date horaFim;
     private Tipo tipo;
+    private String palestrante;
 
-    private List<Palestrante> palestrantes;
+    private String codigoQrCode;
+
 
     public Palestra() {
     }
 
-    public Palestra(long id, String nome, String descricao, String lugar, Programacao programacao, Date horaInicio, Date horaFim, Tipo tipo) {
+    public Palestra(long id, String nome, String descricao, String lugar, Programacao programacao, Date horaInicio, Date horaFim, Tipo tipo, String palestrante, String codigoQrCode) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -54,6 +56,8 @@ public class Palestra implements MutableBean {
         this.horaInicio = horaInicio;
         this.horaFim = horaFim;
         this.tipo = tipo;
+        this.palestrante = palestrante;
+        this.codigoQrCode = codigoQrCode;
     }
 
     @Override
@@ -122,6 +126,22 @@ public class Palestra implements MutableBean {
         this.tipo = tipo;
     }
 
+    public String getPalestrante() {
+        return palestrante;
+    }
+
+    public void setPalestrante(String palestrante) {
+        this.palestrante = palestrante;
+    }
+
+    public String getCodigoQrCode() {
+        return codigoQrCode;
+    }
+
+    public void setCodigoQrCode(String codigoQrCode) {
+        this.codigoQrCode = codigoQrCode;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -138,44 +158,9 @@ public class Palestra implements MutableBean {
         if (horaInicio != null ? !horaInicio.equals(palestra.horaInicio) : palestra.horaInicio != null) return false;
         if (horaFim != null ? !horaFim.equals(palestra.horaFim) : palestra.horaFim != null) return false;
         if (tipo != palestra.tipo) return false;
-        return palestrantes != null ? palestrantes.equals(palestra.palestrantes) : palestra.palestrantes == null;
+        if (palestrante != null ? !palestrante.equals(palestra.palestrante) : palestra.palestrante != null)
+            return false;
+        return codigoQrCode != null ? codigoQrCode.equals(palestra.codigoQrCode) : palestra.codigoQrCode == null;
 
-    }
-
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (nome != null ? nome.hashCode() : 0);
-        result = 31 * result + (descricao != null ? descricao.hashCode() : 0);
-        result = 31 * result + (lugar != null ? lugar.hashCode() : 0);
-        result = 31 * result + (programacao != null ? programacao.hashCode() : 0);
-        result = 31 * result + (horaInicio != null ? horaInicio.hashCode() : 0);
-        result = 31 * result + (horaFim != null ? horaFim.hashCode() : 0);
-        result = 31 * result + (tipo != null ? tipo.hashCode() : 0);
-        result = 31 * result + (palestrantes != null ? palestrantes.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Palestra{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", lugar='" + lugar + '\'' +
-                ", programacao=" + programacao +
-                ", horaInicio=" + horaInicio +
-                ", horaFim=" + horaFim +
-                ", tipo=" + tipo +
-                ", palestrantes=" + palestrantes +
-                '}';
-    }
-
-    public List<Palestrante> getPalestrantes() {
-        return palestrantes;
-    }
-
-    public void setPalestrantes(List<Palestrante> palestrantes) {
-        this.palestrantes = palestrantes;
     }
 }
