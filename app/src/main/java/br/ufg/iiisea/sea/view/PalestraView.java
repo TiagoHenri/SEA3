@@ -32,5 +32,5 @@ public interface PalestraView extends ViewAbstract {
      */
     void showToastByString(String msg);
 
-    void chamaCheckinActivity();
+    void chamaCheckinActivity(Palestra palestraAtualizada);
 }

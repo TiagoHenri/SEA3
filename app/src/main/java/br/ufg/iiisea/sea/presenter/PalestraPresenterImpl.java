@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import br.ufg.iiisea.sea.R;
+import br.ufg.iiisea.sea.bean.Palestra;
 import br.ufg.iiisea.sea.interactor.PalestraInteractor;
 import br.ufg.iiisea.sea.interactor.PalestraInteractorImpl;
 import br.ufg.iiisea.sea.utils.PresenterAbstract;
@@ -18,19 +19,22 @@ public class PalestraPresenterImpl extends PresenterAbstract implements Palestra
 
     private PalestraInteractor interactor;
     private PalestraView view;
+    private Palestra palestraAtual;
 
-    public PalestraPresenterImpl(){
-        this.interactor = new PalestraInteractorImpl();
+    public PalestraPresenterImpl(Palestra palestra){
+        this.palestraAtual = palestra;
+        this.interactor = new PalestraInteractorImpl(palestra);
     }
 
-    public PalestraPresenterImpl(PalestraView view){
-        this();
+    public PalestraPresenterImpl(PalestraView view, Palestra palestra){
+        this(palestra);
         this.view = view;
     }
 
     @Override
     public void checkIn() {
-        view.chamaCheckinActivity();
+        view.showProgressCheckIn();
+        interactor.checkIn(this);
     }
 
     @Override
@@ -58,11 +62,11 @@ public class PalestraPresenterImpl extends PresenterAbstract implements Palestra
     }
 
     @Override
-    public void onSucess() {
+    public void onSucess(Palestra palestraAtualizada) {
         if(view != null) {
             view.hideProgress();
-            view.showToastByString("CheckIn realizado com sucesso");
 
+            view.chamaCheckinActivity(palestraAtualizada);
             view.finish();
         }
     }

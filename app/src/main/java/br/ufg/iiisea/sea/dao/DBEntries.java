@@ -10,7 +10,7 @@ import br.ufg.iiisea.sea.bean.Palestra;
 public final class DBEntries {
 
     public static final String BD_NOME = "SEA3UFG";
-    public static final int    BD_VERSION = 9;
+    public static final int    BD_VERSION = 10;
 
     private DBEntries() {
     }
@@ -111,7 +111,7 @@ public final class DBEntries {
         public static final String COLUMN_NAME_CODIGOQRCODE= "para_codigo_qrcode";
         public static final String SQL_CREATE_ENTRIES      =
                 "CREATE TABLE " + TABLE_NAME + "("
-                        + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                        + COLUMN_ID + " INTEGER PRIMARY KEY, "
                         + COLUMN_NAME_NOME + " TEXT, "
                         + COLUMN_NAME_DESCRICAO + " TEXT, "
                         + COLUMN_NAME_LUGAR + " TEXT, "

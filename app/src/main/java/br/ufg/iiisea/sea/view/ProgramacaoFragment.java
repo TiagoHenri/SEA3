@@ -65,7 +65,7 @@ public class ProgramacaoFragment  extends Fragment implements ProgramacaoView, S
 
         ItemListAdapter<Palestra> itemListAdapter = new ItemListAdapter<Palestra>() {
             @Override
-            public View getView(Palestra item, View view, ViewGroup viewGroup) {
+            public View getView(final Palestra item, View view, final ViewGroup viewGroup) {
                 if(view == null) {
                     LayoutInflater inflater = LayoutInflater.from(getContext());
                     view = inflater.inflate(R.layout.palestra_item, viewGroup, false);
@@ -74,6 +74,25 @@ public class ProgramacaoFragment  extends Fragment implements ProgramacaoView, S
                 SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
                 tvPalestra.setText(dateFormat.format(item.getHoraInicio()) + " - " + dateFormat.format(item.getHoraFim()) +
                         "\n" + item.getNome());
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(viewGroup.getContext(), PalestraActivity.class);
+
+                        Palestra result = item;
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+
+                        intent.putExtra(NOME_PALESTRA, result.getNome());
+                        intent.putExtra(NOME_PALESTRANTES, result.getPalestrante());
+                        intent.putExtra(HORA_INICIO, dateFormat.format(result.getHoraInicio()));
+                        intent.putExtra(HORA_FIM, dateFormat.format(result.getHoraFim()));
+                        intent.putExtra(TIPO, result.getTipo().toString());
+                        intent.putExtra(ID, result.getId());
+                        Log.e("Inicio", item.getNome() + " - " + item.getId());
+
+                        startActivity(intent);
+                    }
+                });
                 return view;
             }
         };
@@ -99,19 +118,19 @@ public class ProgramacaoFragment  extends Fragment implements ProgramacaoView, S
         lstPalestra.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(convertView.getContext(), PalestraActivity.class);
-
-                Palestra result = (Palestra) lstAdapter.getItem(position);
-                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-
-                intent.putExtra(NOME_PALESTRA, result.getNome());
-                intent.putExtra(NOME_PALESTRANTES, result.getPalestrante());
-                intent.putExtra(HORA_INICIO, dateFormat.format(result.getHoraInicio()));
-                intent.putExtra(HORA_FIM, dateFormat.format(result.getHoraFim()));
-                intent.putExtra(TIPO, result.getTipo().toString());
-                intent.putExtra(ID, result.getId());
-
-                startActivity(intent);
+//                Intent intent = new Intent(convertView.getContext(), PalestraActivity.class);
+//
+//                Palestra result = (Palestra) lstAdapter.getItem(position);
+//                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+//
+//                intent.putExtra(NOME_PALESTRA, result.getNome());
+//                intent.putExtra(NOME_PALESTRANTES, result.getPalestrante());
+//                intent.putExtra(HORA_INICIO, dateFormat.format(result.getHoraInicio()));
+//                intent.putExtra(HORA_FIM, dateFormat.format(result.getHoraFim()));
+//                intent.putExtra(TIPO, result.getTipo().toString());
+//                intent.putExtra(ID, result.getId());
+//
+//                startActivity(intent);
             }
         });
         return convertView;
