@@ -1,6 +1,11 @@
 package br.ufg.iiisea.sea.view;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +28,24 @@ public class Inicio extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
+
+        //habilita a câmera em versões android 6.x.x
+        int currentApiVersion = Build.VERSION.SDK_INT;
+        if(currentApiVersion >= Build.VERSION_CODES.M){
+            if(ContextCompat.checkSelfPermission(Inicio.this, Manifest.permission.CAMERA)
+                    != PackageManager.PERMISSION_GRANTED){
+                if (ActivityCompat.shouldShowRequestPermissionRationale(Inicio.this,
+                        Manifest.permission.CAMERA)) {
+                    ActivityCompat.requestPermissions(Inicio.this, new String[]
+                            {android.Manifest.permission.CAMERA}, 1);
+                } else {
+                    ActivityCompat.requestPermissions(Inicio.this, new String[]{Manifest.permission.CAMERA},
+                            1);
+                }
+            }
+        } else {
+
+        }
 
         if(InitialConfig.isLogged){
             Intent intent = new Intent(Inicio.this, HomeActivity.class);
